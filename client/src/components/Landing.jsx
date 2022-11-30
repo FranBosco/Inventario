@@ -6,10 +6,11 @@ import { FiArrowDown } from 'react-icons/fi';
 export default function Landing() {
 	return (
 		<div className="containerLanding">
-			<h1 className="flex text-orange-200 font-mono underline underline-offset-2 justify-center pt-48 text-xl sm:text-3xl sm:font-bold sm:pb-20 md:text-6xl ">
+			<h1 className="flex text-orange-200 font-mono underline underline-offset-2 justify-center pt-48 text-xl sm:text-3xl sm:font-bold sm:pb-10 md:pt-32  md:text-5xl ">
 				- Gestor de inventarios -
 			</h1>
-			<div className="flex justify-center animate-bounce  ">
+			<div className="flex justify-center animate-bounce pt-20 sm:pt-10  ">
+
 				<FiArrowDown className="w-20 h-32 flex justify-center " />
 			</div>
 			<Link
