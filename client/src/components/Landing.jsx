@@ -10,6 +10,7 @@ export default function Landing() {
 				- Gestor de inventarios -
 			</h1>
 			<div className="flex justify-center animate-bounce pt-20 sm:pt-10  ">
+
 				<FiArrowDown className="w-20 h-32 flex justify-center " />
 			</div>
 			<Link
