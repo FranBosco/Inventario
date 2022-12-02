@@ -2,39 +2,39 @@ const { Insumos, Productos } = require("../db");
 
 //.........................................................................................//
 // CREAR PRODUCTO
-const crear_producto = async (data) => {
+const create_product = async (data) => {
   try {
-    const { nombre, stock, detalle, insumos } = data;
+    const { name, stock, detalle, insumos } = data;
 
-    const nuevo_producto = await Productos.create({
-      nombre,
+    const new_product = await Productos.create({
+      name,
       stock,
       detalle,
     });
 
-    const producto_insumos = await Insumos.findAll({
+    const product_insumos = await Insumos.findAll({
       where: {
-        nombre: insumos,
+        name: insumos,
       },
     });
 
-    await nuevo_producto.addInsumos(producto_insumos);
+    await new_product.addInsumos(product_insumos);
 
-    return nuevo_producto;
+    return new_product;
   } catch (error) {
-    console.log("ERROR en crear_producto", error);
+    console.log("ERROR en create_product", error);
   }
 };
 
 //.........................................................................................//
 // OBTENER PRODUCTO
-const obtener_producto = async () => {
+const get_product = async () => {
   try {
-    return await Insumos.findAll({
+    return await Productos.findAll({
       include: [{ model: Insumos }],
     });
   } catch (error) {
-    console.log("ERROR en obtener_producto", error);
+    console.log("ERROR en get_product", error);
   }
 };
 
@@ -42,6 +42,6 @@ const obtener_producto = async () => {
 // BORRAR PRODUCTO
 
 module.exports = {
-  crear_producto,
-  obtener_producto,
+  create_product,
+  get_product,
 };
