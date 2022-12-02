@@ -32,7 +32,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-
 //.........................................................................................//
 // GET /productos
 router.get("/", async (req, res) => {
@@ -57,6 +56,45 @@ router.get("/", async (req, res) => {
 });
 
 //.........................................................................................//
-// GET /productos
+// PUT /productos
+
+router.put("/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let edit = req.body;
+
+    if (id) {
+      let data = await Productos.update(edit, { where: { id } });
+
+      return res.status(200).send("Producto editado con exito");
+    } else {
+      return res.status(200).send("No se pudo editar el producto");
+    }
+  } catch (error) {
+    console.log("ERROR EN RUTA PUT PRODUCTOS");
+  }
+});
+
+//.........................................................................................//
+// DELETE /productos
+router.delete("/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+
+    if (id) {
+      let data = await Productos.destroy({
+        where: {
+          id,
+        },
+      });
+
+      return res.status(200).send("Producto eliminado con exito");
+    } else {
+      return res.status(404).send("No se pudo eliminar el producto");
+    }
+  } catch (error) {
+    console.log("ERROR EN RUTA DELETE PRODUCTOS", error);
+  }
+});
 
 module.exports = router;
