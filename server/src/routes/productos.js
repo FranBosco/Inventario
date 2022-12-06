@@ -48,7 +48,11 @@ router.get("/", async (req, res) => {
         ? res.status(200).send(data_product)
         : res.status(404).send("No se encontro el producto");
     } else {
-      return res.status(200).send(data);
+      let data_total = Productos.findAll({
+        order: [[req.query.property, req.query.order]],
+      });
+
+      return res.status(200).send(data_total);
     }
   } catch (error) {
     console.log("ERROR EN RUTA GET PRODUCTOS", error);
