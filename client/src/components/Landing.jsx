@@ -10,14 +10,13 @@ export default function Landing() {
 				- Gestor de inventarios -
 			</h1>
 			<div className="flex justify-center animate-bounce pt-20 sm:pt-10  ">
-
 				<FiArrowDown className="w-20 h-32 flex justify-center " />
 			</div>
 			<Link
 				to="/home"
-				className="flex text-white font-mono justify-center pt-20 "
+				className="flex text-black font-mono justify-center pt-20 "
 			>
-				<button className="flex text-white font-mono justify-center animate-pulse border-2 rounded-lg py-2 px-2 hover:text-black hover:bg-white sm:border-4 sm:py-6 sm:px-12 sm:text-2xl sm:font-bold  ">
+				<button className="flex text-black font-mono justify-center animate-pulse border-2 rounded-lg py-2 px-2 hover:text-black hover:bg-white sm:border-4 sm:py-6 sm:px-12 sm:text-2xl sm:font-bold  ">
 					Ingresa
 				</button>
 			</Link>
