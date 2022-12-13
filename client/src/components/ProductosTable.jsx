@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/HomeTable.css';
+
 import { Link } from 'react-router-dom';
 import { RiEdit2Line } from 'react-icons/ri';
 
