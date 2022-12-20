@@ -36,10 +36,9 @@ router.post("/", async (req, res) => {
 // GET /productos
 router.get("/", async (req, res) => {
   try {
-    let { name } = req.query;
     let data = await get_product();
 
-    if (name) {
+    if (req.query.name) {
       let data_product = data.filter((prod) =>
         prod.name.toLoweCase().includes(name.toLowerCase())
       );
