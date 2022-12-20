@@ -43,6 +43,9 @@ export default function ModifStock() {
 					Volver
 				</button>
 			</Link>
+			<div className="sm:flex sm:justify-start sm:align-start">
+				<Menu />
+			</div>
 
 			<h1 className=" flex justify-center text-black text-xl font-mono font-bold pt-10 pb-10 sm:text-4xl underline">
 				Modificar Stock
