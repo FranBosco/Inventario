@@ -1,4 +1,5 @@
 const { Insumos, Productos } = require("../db");
+const preInsumos = require("../json/preInsumos.json");
 
 // const mateiaPrima = async () => {
 //   try {
@@ -17,6 +18,28 @@ const { Insumos, Productos } = require("../db");
 //     console.log("ROMPO EN UTILS MATERIA", error);
 //   }
 // };
+
+const preload_insumos = async () => {
+  try {
+    let data = preInsumos.map((insumos) => {
+      return {
+        name: insumos.name,
+        stock: insumos.stock,
+        details: insumos.details,
+        unidadDeMedida: insumos.unidadDeMedida,
+        minimo: insumos.minimo,
+        img: insumos.img,
+      };
+    });
+
+    for (const insumos of data) {
+      create_mp(insumos);
+    }
+    return data;
+  } catch (error) {
+    console.log("ROMPO EN PRELOAD INSUMOS", error);
+  }
+};
 
 const create_mp = async (data) => {
   const { name, stock, details, unidadDeMedida, minimo, img } = data;
@@ -45,4 +68,5 @@ const materiaPrima_load = async () => {
 module.exports = {
   create_mp,
   materiaPrima_load,
+  preload_insumos,
 };
