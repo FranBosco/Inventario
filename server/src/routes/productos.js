@@ -36,10 +36,9 @@ router.post("/", async (req, res) => {
 // GET /productos
 router.get("/", async (req, res) => {
   try {
-    let { name } = req.query;
     let data = await get_product();
 
-    if (name) {
+    if (req.query.name) {
       let data_product = data.filter((prod) =>
         prod.name.toLoweCase().includes(name.toLowerCase())
       );
@@ -48,12 +47,48 @@ router.get("/", async (req, res) => {
         ? res.status(200).send(data_product)
         : res.status(404).send("No se encontro el producto");
     } else {
-      return res.status(200).send(data);
+      let data_total = Productos.findAll({
+        order: [[req.query.property, req.query.order]],
+      });
+
+      return res.status(200).send(data_total);
     }
   } catch (error) {
     console.log("ERROR EN RUTA GET PRODUCTOS", error);
   }
 });
+
+router.get("/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    if (id) {
+      let data = await Productos.findByPk(id);
+
+      data
+        ? res.status(200).send(data)
+        : res.status(404).send("No esta el detalle del producto");
+    }
+  } catch (error) {
+    console.log("ERROR EN RUTA GET PRODUCTOS ID");
+  }
+});
+
+// router.get("/:id", async (req, res) => {
+//   try {
+//     let { id } = req.params;
+//     let data = await get_product();
+
+//     if (id) {
+//       let data_product = data.find((product) => product.id == id);
+
+//       data_product
+//         ? res.status(200).send(data_product)
+//         : res.status(404).send("No esta el detalle del producto");
+//     }
+//   } catch (error) {
+//     console.log("ERROR EN RUTA GET PRODUCTOS ID");
+//   }
+// });
 
 //.........................................................................................//
 // PUT /productos

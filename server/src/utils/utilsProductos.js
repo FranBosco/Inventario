@@ -4,12 +4,14 @@ const { Insumos, Productos } = require("../db");
 // CREAR PRODUCTO
 const create_product = async (data) => {
   try {
-    const { name, stock, detalle, insumos } = data;
+    const { name, stock, detalle, min, img, insumos } = data;
 
     const new_product = await Productos.create({
       name,
       stock,
       detalle,
+      min,
+      img,
     });
 
     const product_insumos = await Insumos.findAll({
