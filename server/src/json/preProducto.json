@@ -1,0 +1,73 @@
+[
+    {
+        "name": "Palet",
+        "stock": 110,
+        "details": "Palet de roble, ideal para solarium"
+    },
+    {
+        "name": "Puerta",
+        "stock": 110,
+        "details": "puerta de algarrobo, ideal para cerca"
+    },
+    {
+        "name": "baldozas",
+        "stock": 110,
+        "details": "Para patio, (30 x 30)"
+    },
+    {
+        "name": "Rollo de carbono",
+        "stock": 110,
+        "details": "Hidrófugo, por lo que repele el agua. Es permeable. Permite el paso del vapor de agua."
+    },
+    {
+        "name": "Saco Canto rodado",
+        "stock": 110,
+        "details": "Saco de 50 kg"
+    },
+    {
+        "name": "Palet de Cemento",
+        "stock": 110,
+        "details": "Palet de Cemento (7000 kg) "
+    },
+    {
+        "name": "Balde de Latex",
+        "stock": 110,
+        "details": "Balde de Latex 20L"
+    },
+    {
+        "name": "Techo de chapa",
+        "stock": 110,
+        "details": "Techo de chapa"
+    },
+    {
+        "name": "Saco de arena",
+        "stock": 110,
+        "details": "Saco de arena 50kg"
+    },
+    {
+        "name": "Bombillas de alpaca",
+        "stock": 110,
+        "details": "Bombillas de alpaca"
+    },
+    {
+        "name": "Cañeria de PVc",
+        "stock": 110,
+        "details": "Cañeria de PVc"
+    },
+    {
+        "name": "Rollo de membrana para techo",
+        "stock": 110,
+        "details": "Rollo de membrana para techo 2000m"
+    },
+    {
+        "name": "Placa anti humedad Durlock",
+        "stock": 110,
+        "details": "Placa anti humedad Durlock(15 x 30)"
+    },
+    {
+        "name": "Tejido de alambre",
+        "stock": 110,
+        "details": "Tejido de alambre rombo"
+    }
+
+]
