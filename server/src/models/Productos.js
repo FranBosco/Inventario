@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
     stock: {
       type: DataTypes.INTEGER,
     },
-    details: {
+    detail: {
       type: DataTypes.TEXT,
     },
     min: {
