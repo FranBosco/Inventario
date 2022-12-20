@@ -25,7 +25,6 @@ const { Insumos, Productos } = require("../db");
 
 //.........................................................................................//
 // CREAR PRODUCTO
-
 const create_product = async (data) => {
   try {
     const { name, stock, detail, min, img, insumos } = data;
