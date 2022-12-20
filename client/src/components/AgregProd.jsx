@@ -13,6 +13,9 @@ export default function AgregProd() {
 					Volver
 				</button>
 			</Link>
+			<div className="sm:flex sm:justify-start sm:align-start">
+				<Menu />
+			</div>
 
 			<h1 className="flex justify-center text-black text-2xl sm:text-3xl underline ">
 				Agregar Produccion
