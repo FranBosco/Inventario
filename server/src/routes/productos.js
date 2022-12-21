@@ -48,11 +48,14 @@ router.get("/", async (req, res) => {
         ? res.status(200).send(data_product)
         : res.status(404).send("No se encontro el producto");
     } else {
-      let data_total = Productos.findAll({
+      let data_total = await Productos.findAll({
         order: [[req.query.property, req.query.order]],
         include: {
           model: Insumos,
           attributes: ["name"],
+          through: {
+            attributes: [],
+          },
         },
       });
 
