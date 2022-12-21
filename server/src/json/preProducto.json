@@ -2,72 +2,114 @@
     {
         "name": "Palet",
         "stock": 110,
-        "details": "Palet de roble, ideal para solarium"
+        "details": "Palet de roble, ideal para solarium",
+        "min": 50,
+        "insumos": ["Madera"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Puerta",
         "stock": 110,
-        "details": "puerta de algarrobo, ideal para cerca"
+        "details": "puerta de algarrobo, ideal para cerca",
+        "min": 50,
+        "insumos": ["Algarrobo"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "baldozas",
         "stock": 110,
-        "details": "Para patio, (30 x 30)"
+        "details": "Para patio, (30 x 30)",
+        "min": 50,
+        "insumos": ["Ceramica"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Rollo de carbono",
         "stock": 110,
-        "details": "Hidrófugo, por lo que repele el agua. Es permeable. Permite el paso del vapor de agua."
+        "details": "Hidrófugo, por lo que repele el agua. Es permeable. Permite el paso del vapor de agua.",
+        "min": 50,
+        "insumos": ["fibra de vidrio"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Saco Canto rodado",
         "stock": 110,
-        "details": "Saco de 50 kg"
+        "details": "Saco de 50 kg",
+        "min": 50,
+        "insumos": ["Canto rodado"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Palet de Cemento",
         "stock": 110,
-        "details": "Palet de Cemento (7000 kg) "
+        "details": "Palet de Cemento (7000 kg) ",
+        "min": 50,
+        "insumos": ["Cemento"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Balde de Latex",
         "stock": 110,
-        "details": "Balde de Latex 20L"
+        "details": "Balde de Latex 20L",
+        "min": 50,
+        "insumos": ["Latex"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Techo de chapa",
         "stock": 110,
-        "details": "Techo de chapa"
+        "details": "Techo de chapa",
+        "min": 50,
+        "insumos": ["Chapa"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Saco de arena",
         "stock": 110,
-        "details": "Saco de arena 50kg"
+        "details": "Saco de arena 50kg",
+        "min": 50,
+        "insumos": ["Arena"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Bombillas de alpaca",
         "stock": 110,
-        "details": "Bombillas de alpaca"
+        "details": "Bombillas de alpaca",
+        "min": 50,
+        "insumos": ["Alpaca"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Cañeria de PVc",
         "stock": 110,
-        "details": "Cañeria de PVc"
+        "details": "Cañeria de PVc",
+        "min": 50,
+        "insumos": ["Pvc"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Rollo de membrana para techo",
         "stock": 110,
-        "details": "Rollo de membrana para techo 2000m"
+        "details": "Rollo de membrana para techo 2000m",
+        "min": 50,
+        "insumos": ["Membrana para techo"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Placa anti humedad Durlock",
         "stock": 110,
-        "details": "Placa anti humedad Durlock(15 x 30)"
+        "details": "Placa anti humedad Durlock(15 x 30)",
+        "min": 50,
+        "insumos": ["Durlock"],
+        "img": "Lo que vos quieras ver"
     },
     {
         "name": "Tejido de alambre",
         "stock": 110,
-        "details": "Tejido de alambre rombo"
+        "details": "Tejido de alambre rombo",
+        "min": 50,
+        "insumos": ["Alambrilla"],
+        "img": "Lo que vos quieras ver"
     }
 
 ]

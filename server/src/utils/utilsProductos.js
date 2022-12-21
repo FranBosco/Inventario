@@ -1,46 +1,46 @@
 const { Insumos, Productos } = require("../db");
-// const preProductos = require("../json/preProducto.json");
+const preProducto = require("../json/preProducto.json");
 
-// //.........................................................................................//
-// // Carga Json.
+//.........................................................................................//
+// Carga Json.
 
-// const preload_products = async () => {
-//   try {
-//     let data = preProductos.map((product) => {
-//       return {
-//         name: product.name,
-//         stock: product.stock,
-//         details: product.details,
-//       };
-//     });
+const preload_products = async () => {
+  try {
+    let data = preProducto.map((product) => {
+      return {
+        name: product.name,
+        stock: product.stock,
+        details: product.details,
+        min: product.min,
+        insumos: product.insumos,
+      };
+    });
 
-//     for (const product of data) {
-//       create_product(product);
-//     }
-//     return data;
-//   } catch (error) {
-//     console.log("ROMPO EN PRELOAD PRODUCT", error);
-//   }
-// };
+    for (const product of data) {
+      create_product(product);
+    }
+    return data;
+  } catch (error) {
+    console.log("ROMPO EN PRELOAD PRODUCT", error);
+  }
+};
 
 //.........................................................................................//
 // CREAR PRODUCTO
 const create_product = async (data) => {
   try {
-    const { name, stock, detail, min, img, insumos } = data;
+    const { name, stock, details, min, img, insumos } = data;
 
     const new_product = await Productos.create({
       name,
       stock,
-      detail,
+      details,
       min,
       img,
     });
 
     const product_insumos = await Insumos.findAll({
-      where: {
-        name: insumos,
-      },
+      where: { name: insumos },
     });
 
     await new_product.addInsumos(product_insumos);
