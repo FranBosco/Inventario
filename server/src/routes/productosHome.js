@@ -6,9 +6,9 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    let data_total = Productos.findAll({
+    let data_total = await Productos.findAll({
       limit: 7,
-      order: [[stock, DESC]],
+      order: [["stock", "DESC"]],
     });
 
     return res.status(200).send(data_total);

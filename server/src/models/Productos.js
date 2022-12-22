@@ -9,8 +9,8 @@ module.exports = (sequelize) => {
     stock: {
       type: DataTypes.INTEGER,
     },
-    detail: {
-      type: DataTypes.TEXT,
+    details: {
+      type: DataTypes.STRING,
     },
     min: {
       type: DataTypes.INTEGER,

@@ -37,18 +37,26 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     let data = await get_product();
+    let { name } = req.query;
 
-    if (req.query.name) {
+    if (name) {
       let data_product = data.filter((prod) =>
-        prod.name.toLoweCase().includes(name.toLowerCase())
+        prod.name.toLowerCase().includes(name.toLowerCase())
       );
 
       data_product.length > 0
         ? res.status(200).send(data_product)
         : res.status(404).send("No se encontro el producto");
     } else {
-      let data_total = Productos.findAll({
+      let data_total = await Productos.findAll({
         order: [[req.query.property, req.query.order]],
+        include: {
+          model: Insumos,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
       });
 
       return res.status(200).send(data_total);
