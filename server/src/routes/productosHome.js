@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
   try {
     let data_total = await Productos.findAll({
       limit: 7,
-      order: [["stock", "DESC"]],
+      order: [["stock", "ASC"]],
     });
 
     return res.status(200).send(data_total);
