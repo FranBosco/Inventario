@@ -1,114 +1,114 @@
 [
-    {
-        "name": "Madera",
-        "stock": 111,
-        "details": "Placa de Roble",
-        "unidadDeMedida": "unidad",
-        "minimo": 50,
-        "img": "madera de roble"
-    },
-    {
-        "name": "Algarrobo",
-        "stock": 97,
-        "details": "Placa de Algarrobo",
-        "unidadDeMedida": "unidad",
-        "minimo": 50,
-        "img": "Placa de Algarrobo"
-    },
-    {
-        "name": "Ceramica",
-        "stock": 999,
-        "details": "Baldosa para pisos",
-        "unidadDeMedida": "unidad",
-        "minimo": 100,
-        "img": "Baldosa naranja de patio"
-    },
-    {
-        "name": "fibra de vidrio",
-        "stock": 1000,
-        "details": "fibra para cableado",
-        "unidadDeMedida": "Metro",
-        "minimo": 200,
-        "img": "fibra de vidrio"
-    },
-    {
-        "name": "Canto rodado",
-        "stock": 10000,
-        "details": "Canto rodado",
-        "unidadDeMedida": "Kilogramo",
-        "minimo": 2000,
-        "img": "Canto rodado"
-    },
-    {
-        "name": "Cemento",
-        "stock": 2000,
-        "details": "Cemento",
-        "unidadDeMedida": "Unidad/Kilogramo",
-        "minimo": 500,
-        "img": "Bolsa de cemento"
-    },
-    {
-        "name": "Latex",
-        "stock": 200,
-        "details": "Pintura de interior o exterior",
-        "unidadDeMedida": "unidad/litro",
-        "minimo": 50,
-        "img": "Pintura "
-    },
-    {
-        "name": "Chapa",
-        "stock": 500,
-        "details": "Chapa para techo",
-        "unidadDeMedida": "Unidad/Metro",
-        "minimo": 100,
-        "img": "Chapa de techo"
-    },
-    {
-        "name": "Arena",
-        "stock": 10000,
-        "details": "Arena blanca",
-        "unidadDeMedida": "Unidad/Kilogramo",
-        "minimo": 1000,
-        "img": "Bolson de arena"
-    },
-    {
-        "name": "Alpaca",
-        "stock": 114,
-        "details": "alpaca",
-        "unidadDeMedida": "Unidad",
-        "minimo": 50,
-        "img": "alpaca"
-    },
-    {
-        "name": "Pvc",
-        "stock": 800,
-        "details": "Caños de pvc",
-        "unidadDeMedida": "unidad/metro",
-        "minimo": 100,
-        "img": "Caños de Pvc"
-    },
-    {
-        "name": "Membrana para techo",
-        "stock": 111,
-        "details": "Membrana para techo",
-        "unidadDeMedida": "Metro",
-        "minimo": 50,
-        "img": "Membrana de techo"
-    },
-    {
-        "name": "Durlock",
-        "stock": 214,
-        "details": "Placa de durlock",
-        "unidadDeMedida": "unidad/metro",
-        "minimo": 100,
-        "img": "Placa de durlock"
-    },
-    {
-        "name": "Alambrilla",
-        "stock": 333,
-        "details": "Tejido de alambre",
-        "unidadDeMedida": "Metro",
-        "minimo": 50,
-        "img": "Tejido de alambre"
-    }
+	{
+		"name": "Madera",
+		"stock": 49,
+		"details": "Placa de Roble",
+		"unidadDeMedida": "unidad",
+		"min": 50,
+		"img": "madera de roble"
+	},
+	{
+		"name": "Algarrobo",
+		"stock": 97,
+		"details": "Placa de Algarrobo",
+		"unidadDeMedida": "unidad",
+		"min": 50,
+		"img": "Placa de Algarrobo"
+	},
+	{
+		"name": "Ceramica",
+		"stock": 999,
+		"details": "Baldosa para pisos",
+		"unidadDeMedida": "unidad",
+		"min": 100,
+		"img": "Baldosa naranja de patio"
+	},
+	{
+		"name": "fibra de vidrio",
+		"stock": 1000,
+		"details": "fibra para cableado",
+		"unidadDeMedida": "Metro",
+		"min": 200,
+		"img": "fibra de vidrio"
+	},
+	{
+		"name": "Canto rodado",
+		"stock": 10000,
+		"details": "Canto rodado",
+		"unidadDeMedida": "Kilogramo",
+		"min": 2000,
+		"img": "Canto rodado"
+	},
+	{
+		"name": "Cemento",
+		"stock": 2000,
+		"details": "Cemento",
+		"unidadDeMedida": "Unidad/Kilogramo",
+		"min": 500,
+		"img": "Bolsa de cemento"
+	},
+	{
+		"name": "Latex",
+		"stock": 200,
+		"details": "Pintura de interior o exterior",
+		"unidadDeMedida": "unidad/litro",
+		"min": 50,
+		"img": "Pintura "
+	},
+	{
+		"name": "Chapa",
+		"stock": 500,
+		"details": "Chapa para techo",
+		"unidadDeMedida": "Unidad/Metro",
+		"min": 100,
+		"img": "Chapa de techo"
+	},
+	{
+		"name": "Arena",
+		"stock": 10000,
+		"details": "Arena blanca",
+		"unidadDeMedida": "Unidad/Kilogramo",
+		"min": 1000,
+		"img": "Bolson de arena"
+	},
+	{
+		"name": "Alpaca",
+		"stock": 114,
+		"details": "alpaca",
+		"unidadDeMedida": "Unidad",
+		"min": 50,
+		"img": "alpaca"
+	},
+	{
+		"name": "Pvc",
+		"stock": 800,
+		"details": "Caños de pvc",
+		"unidadDeMedida": "unidad/metro",
+		"min": 100,
+		"img": "Caños de Pvc"
+	},
+	{
+		"name": "Membrana para techo",
+		"stock": 111,
+		"details": "Membrana para techo",
+		"unidadDeMedida": "Metro",
+		"min": 50,
+		"img": "Membrana de techo"
+	},
+	{
+		"name": "Durlock",
+		"stock": 214,
+		"details": "Placa de durlock",
+		"unidadDeMedida": "unidad/metro",
+		"min": 100,
+		"img": "Placa de durlock"
+	},
+	{
+		"name": "Alambrilla",
+		"stock": 333,
+		"details": "Tejido de alambre",
+		"unidadDeMedida": "Metro",
+		"min": 50,
+		"img": "Tejido de alambre"
+	}
 ]

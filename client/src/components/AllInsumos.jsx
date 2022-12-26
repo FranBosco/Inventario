@@ -62,10 +62,15 @@ export default function AllInsumos() {
 							<tr className="text-black border-2 border-black " key={i.id}>
 								<td className="px-2 border-2 border-black">{i.name}</td>
 								<td className="px-2 border-2 border-black">{i.stock}</td>
-								<td className="px-2 border-2 border-black">{i.minimo}</td>
-								<td className="px-2 border-2 border-black">
-									{i.stock - i.minimo}
-								</td>
+								<td className="px-2 border-2 border-black">{i.min}</td>
+								{i.difference > 0 ? (
+									<td className="px-2 border-2 border-black">{i.difference}</td>
+								) : (
+									<td className="px-2 border-2 border-black bg-red-500">
+										{i.difference}
+									</td>
+								)}
+
 								<td className="px-2 border-2 border-black">
 									<Link to={`/insumo/${i.id}`} className="flex justify-center">
 										<RiEdit2Line />
