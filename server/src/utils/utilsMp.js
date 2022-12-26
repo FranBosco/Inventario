@@ -27,7 +27,7 @@ const preload_insumos = async () => {
         stock: insumos.stock,
         details: insumos.details,
         unidadDeMedida: insumos.unidadDeMedida,
-        minimo: insumos.minimo,
+        min: insumos.min,
         img: insumos.img,
       };
     });
@@ -42,14 +42,14 @@ const preload_insumos = async () => {
 };
 
 const create_mp = async (data) => {
-  const { name, stock, details, unidadDeMedida, minimo, img } = data;
+  const { name, stock, details, unidadDeMedida, min, img } = data;
   try {
     let new_load = await Insumos.create({
       name,
       stock,
       details,
       unidadDeMedida,
-      minimo,
+      min,
       img,
     });
   } catch (error) {

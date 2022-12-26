@@ -66,6 +66,8 @@ router.get("/", async (req, res) => {
   }
 });
 
+//.........................................................................................//
+// GET /productos/:id
 router.get("/:id", async (req, res) => {
   try {
     let { id } = req.params;
@@ -81,26 +83,8 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// router.get("/:id", async (req, res) => {
-//   try {
-//     let { id } = req.params;
-//     let data = await get_product();
-
-//     if (id) {
-//       let data_product = data.find((product) => product.id == id);
-
-//       data_product
-//         ? res.status(200).send(data_product)
-//         : res.status(404).send("No esta el detalle del producto");
-//     }
-//   } catch (error) {
-//     console.log("ERROR EN RUTA GET PRODUCTOS ID");
-//   }
-// });
-
 //.........................................................................................//
 // PUT /productos
-
 router.put("/:id", async (req, res) => {
   try {
     let { id } = req.params;
@@ -125,7 +109,7 @@ router.delete("/:id", async (req, res) => {
     let { id } = req.params;
 
     if (id) {
-      let data = await Productos.destroy({
+      await Productos.destroy({
         where: {
           id,
         },
