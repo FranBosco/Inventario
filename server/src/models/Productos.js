@@ -21,7 +21,8 @@ module.exports = (sequelize) => {
     difference: {
       type: DataTypes.INTEGER,
       get() {
-        return this.stock - this.min;
+        let aux = this.stock - this.min;
+        return aux;
       },
     },
   });
