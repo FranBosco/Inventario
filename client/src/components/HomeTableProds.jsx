@@ -1,9 +1,16 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProdsHome } from '../redux/actions';
 import { Link } from 'react-router-dom';
 import { RiEdit2Line } from 'react-icons/ri';
 
 export default function HomeTableProds() {
+	const homeProducts = useSelector((state) => state.prodsHome);
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getProdsHome());
+	}, [dispatch]);
+
 	return (
 		<table className="">
 			<thead>
@@ -11,83 +18,35 @@ export default function HomeTableProds() {
 					<th className="px-2 border-2 border-black">Producto</th>
 					<th className="px-2 border-2 border-black">Stock </th>
 					<th className="px-2 border-2 border-black">Min</th>
+					<th className="px-2 border-2 border-black">Diferencia</th>
 					<th className="px-2 border-2 border-black">Editar</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr className="text-black border-2 border-black ">
-					<td className="px-2 border-2 border-black">Prod 1</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">
-						<Link to="/" className="flex justify-center">
-							<RiEdit2Line />
-						</Link>
-					</td>
-				</tr>
-				<tr className="text-black border-2 border-black">
-					<td className="px-2 border-2 border-black">
-						Prod 2 con test para ver como reacciona el css de tailwind cuando
-						escribo un producto con el nombre largo
-					</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">
-						<Link to="/" className="flex justify-center">
-							<RiEdit2Line />
-						</Link>
-					</td>
-				</tr>
-				<tr className="text-black border-2 border-black">
-					<td className="px-2 border-2 border-black">Prod 3</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">
-						<Link to="/" className="flex justify-center">
-							<RiEdit2Line />
-						</Link>
-					</td>
-				</tr>
-				<tr className="text-black border-2 border-black">
-					<td className="px-2 border-2 border-black">Prod 4</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">
-						<Link to="/" className="flex justify-center">
-							<RiEdit2Line />
-						</Link>
-					</td>
-				</tr>
-				<tr className="text-black border-2 border-black">
-					<td className="px-2 border-2 border-black">Prod 5</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">
-						<Link to="/" className="flex justify-center">
-							<RiEdit2Line />
-						</Link>
-					</td>
-				</tr>
-				<tr className="text-black border-2 border-black">
-					<td className="px-2 border-2 border-black">Prod 6</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">
-						<Link to="/" className="flex justify-center">
-							<RiEdit2Line />
-						</Link>
-					</td>
-				</tr>
-				<tr className="text-black border-2 border-black">
-					<td className="px-2 border-2 border-black">Prod 7</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">xxx</td>
-					<td className="px-2 border-2 border-black">
-						<Link to="/" className="flex justify-center">
-							<RiEdit2Line />
-						</Link>
-					</td>
-				</tr>
+				{homeProducts?.map((p) => {
+					return (
+						<tr className="text-black border-2 border-black " key={p.id}>
+							<td className="px-2 border-2 border-black">{p.name}</td>
+							<td className="px-2 border-2 border-black">{p.stock}</td>
+							<td className="px-2 border-2 border-black">{p.min}</td>
+							{p.stock - p.min > 0 ? (
+								<td className="px-2 border-2 border-black">
+									{p.stock - p.min}
+								</td>
+							) : (
+								<td className="px-2 border-2 border-black bg-red-500">
+									{p.stock - p.min}
+								</td>
+							)}
+
+							<td className="px-2 border-2 border-black">
+								<Link to={`/producto/${p.id}`} className="flex justify-center">
+									<RiEdit2Line />
+								</Link>
+							</td>
+						</tr>
+					);
+				})}
 			</tbody>
 		</table>
 	);
