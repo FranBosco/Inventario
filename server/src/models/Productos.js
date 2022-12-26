@@ -6,17 +6,24 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    stock: {
-      type: DataTypes.INTEGER,
+    img: {
+      type: DataTypes.STRING,
     },
     details: {
       type: DataTypes.STRING,
     },
+    stock: {
+      type: DataTypes.INTEGER,
+    },
     min: {
       type: DataTypes.INTEGER,
     },
-    img: {
-      type: DataTypes.STRING,
+    difference: {
+      type: DataTypes.INTEGER,
+      get() {
+        let aux = this.stock - this.min;
+        return aux;
+      },
     },
   });
 };

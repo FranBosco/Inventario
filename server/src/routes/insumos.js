@@ -54,6 +54,7 @@ router.put("/add/:id", async (req, res) => {
     console.log("ROMPO EN RUTA PUT INSUMOS", error);
   }
 });
+
 router.put("/remove/:id", async (req, res) => {
   try {
     let { id } = req.params;
@@ -71,6 +72,7 @@ router.put("/remove/:id", async (req, res) => {
     console.log("ERROR EN LA RUTA PUT/REMOVE", error);
   }
 });
+
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {

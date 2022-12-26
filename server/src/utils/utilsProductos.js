@@ -2,7 +2,7 @@ const { Insumos, Productos } = require("../db");
 const preProducto = require("../json/preProducto.json");
 
 //.........................................................................................//
-// Carga Json.
+// CARGA JSON
 
 const preload_products = async () => {
   try {
@@ -21,7 +21,7 @@ const preload_products = async () => {
     }
     return data;
   } catch (error) {
-    console.log("ROMPO EN PRELOAD PRODUCT", error);
+    console.log("Error en preload_products", error);
   }
 };
 
@@ -64,7 +64,7 @@ const get_product = async () => {
 };
 
 //.........................................................................................//
-// BORRAR PRODUCTO
+// OBTENER PRODUCTOS PARA EL HOME
 
 module.exports = {
   create_product,
