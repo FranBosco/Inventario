@@ -95,7 +95,15 @@ router.get('/:id', async (req, res) => {
 	try {
 		let { id } = req.params;
 		if (id) {
-			let data = await Productos.findByPk(id);
+			let data = await Productos.findByPk(id, {
+				include: {
+					model: Insumos,
+					attributes: ['name'],
+					through: {
+						attributes: []
+					}
+				}
+			});
 
 			data
 				? res.status(200).send(data)
