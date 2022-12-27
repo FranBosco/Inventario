@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProdsById } from '../redux/actions';
+import { getInsumoId } from '../redux/actions';
 import { useParams, Link } from 'react-router-dom';
 import Menu from './Menu';
 
 export default function ProdById() {
-	const prod = useSelector((state) => state.prodById);
-	console.log('prods', prod);
+	const ins = useSelector((state) => state.insumoById);
+
 	const dispatch = useDispatch();
 	const { id } = useParams();
 	useEffect(() => {
-		dispatch(getProdsById(id));
+		dispatch(getInsumoId(id));
 	}, [dispatch, id]);
 
 	return (
@@ -25,17 +25,17 @@ export default function ProdById() {
 			</div>
 			<div>
 				<h1 className="text-2xl font-bold flex justify-center pt-10 sm:pt-0 underline sm:text-5xl">
-					{prod.name}
+					{ins.name}
 				</h1>
 				<div className="flex justify-center pt-4 sm:pt-12">
 					<img
-						src={prod.img}
+						src={ins.img}
 						alt=""
 						className="border-2 border-blue-800 rounded-xl w-32 h-32 sm:w-56 sm:h-56"
 					/>
 				</div>
 				<p className="flex justify-center pt-2 sm:pt-10 sm:text-xl">
-					{prod.details}
+					{ins.details}
 				</p>
 			</div>
 			<div className="flex justify-center  pt-4 sm:pt-12  ">
@@ -53,14 +53,14 @@ export default function ProdById() {
 					</thead>
 					<tbody>
 						<td className="px-2 border-2 border-black sm:w-48 sm:text-2xl rounded-xl">
-							{prod.stock}
+							{ins.stock}
 						</td>
 						<td className="px-2 border-2 border-black sm:w-48 sm:text-2xl rounded-xl">
 							{' '}
-							{prod.min}
+							{ins.min}
 						</td>
 						<td className="px-2 border-2 border-black sm:w-48 sm:text-2xl rounded-xl">
-							{prod.difference}
+							{ins.difference}
 						</td>
 					</tbody>
 				</table>

@@ -5,6 +5,9 @@ export const GET_ALL_PRODUCTOS = 'GET_ALL_PRODUCTOS';
 export const GET_PRODUCTOS_BY_NAME = 'GET_PRODUCTOS_BY_NAME';
 export const GET_PRODS_HOME = 'GET_PRODS_HOME';
 export const GET_PRODS_BY_ID = 'GET_PRODS_BY_ID';
+export const GET_INSUMOS_HOME = 'GET_INSUMOS_HOME';
+export const GET_INSUMO_BY_ID = 'GET_INSUMO_BY_ID';
+export const CREATE_PROD = 'CREATE_PROD';
 
 //RUTAS INSUMOS
 /* - Traer todos los insumos (para el listado)
@@ -20,7 +23,9 @@ export const GET_PRODS_BY_ID = 'GET_PRODS_BY_ID';
 export function getInsumos() {
 	try {
 		return async function (dispatch) {
-			var info = await axios.get('http://localhost:3001/insumos');
+			var info = await axios.get(
+				'http://localhost:3001/insumos?property=name&order=ASC'
+			);
 			return dispatch({
 				type: GET_ALL_INSUMOS,
 				payload: info.data
@@ -46,6 +51,30 @@ export function searchByNameI(name) {
 			console.log(error);
 		}
 	};
+}
+
+export function getInsumosHome() {
+	try {
+		return async function (dispatch) {
+			var info = await axios.get('http://localhost:3001/insumosHome');
+			return dispatch({
+				type: GET_INSUMOS_HOME,
+				payload: info.data
+			});
+		};
+	} catch (error) {}
+}
+
+export function getInsumoId(id) {
+	try {
+		return async function (dispatch) {
+			var info = await axios.get(`http://localhost:3001/insumos/${id}`);
+			return dispatch({
+				type: GET_INSUMO_BY_ID,
+				payload: info.data
+			});
+		};
+	} catch (error) {}
 }
 
 //RUTAS PRODUCTOS
@@ -115,4 +144,18 @@ export function getProdsById(id) {
 			});
 		};
 	} catch (error) {}
+}
+
+export function createProd(payload) {
+	return async function (dispatch) {
+		try {
+			const info = await axios.post('http://localhost:3001/productos', payload);
+			return dispatch({
+				type: CREATE_PROD,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 }

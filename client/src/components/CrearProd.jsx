@@ -1,8 +1,48 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getInsumos } from '../redux/actions';
+import { createProd } from '../redux/actions';
+import { Link, useHistory } from 'react-router-dom';
 import Menu from './Menu';
 
 export default function CrearProd() {
+	const dispatch = useDispatch();
+	const insumos = useSelector((state) => state.allInsumos);
+	const [input, setInput] = useState({
+		name: '',
+		img: '',
+		details: '',
+		stock: 0,
+		min: 0,
+		insumos: []
+	});
+
+	useEffect(() => {
+		dispatch(getInsumos());
+	}, [dispatch]);
+
+	const handleChange = (e) => {
+		setInput({
+			...input,
+			[e.target.name]: e.target.value.toLowerCase()
+		});
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		dispatch(createProd(input));
+		alert('Producto creado satisfactoriamente');
+		setInput({
+			name: '',
+			img: '',
+			details: '',
+			stock: 0,
+			min: 0,
+			insumos: []
+		});
+	};
+
 	return (
 		<div className="">
 			<Link
@@ -26,8 +66,10 @@ export default function CrearProd() {
 						<input
 							className="border-2 border-blue-800 rounded-xl"
 							type="text"
-							name=""
+							name="name"
 							id=""
+							value={input.name}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="flex flex-col sm:text-xl sm:font-bold ">
@@ -35,8 +77,10 @@ export default function CrearProd() {
 						<input
 							className="border-2 border-blue-800 rounded-xl"
 							type="number"
-							name=""
+							name="stock"
 							id=""
+							value={input.stock}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="flex flex-col sm:text-xl sm:font-bold ">
@@ -44,26 +88,22 @@ export default function CrearProd() {
 						<input
 							className="border-2 border-blue-800 rounded-xl"
 							type="text"
-							name=""
+							name="details"
 							id=""
+							value={input.details}
+							onChange={handleChange}
 						/>
 					</div>
-					<div className="flex flex-col sm:text-xl sm:font-bold ">
-						<label>Unidad de medida (cm,lt,kg, etc.):</label>
-						<input
-							className="border-2 border-blue-800 rounded-xl"
-							type="text"
-							name=""
-							id=""
-						/>
-					</div>
+
 					<div className="flex flex-col sm:text-xl sm:font-bold">
 						<label>Stock minimo deseado:</label>
 						<input
 							className="border-2 border-blue-800 rounded-xl"
 							type="number"
-							name=""
+							name="min"
 							id=""
+							value={input.min}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="flex flex-col sm:text-xl sm:font-bold">
@@ -71,18 +111,28 @@ export default function CrearProd() {
 						<input
 							className="border-2 border-blue-800 rounded-xl"
 							type="text"
-							name=""
+							name="img"
 							id=""
+							value={input.img}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="flex flex-col sm:text-xl sm:font-bold">
 						<label>Insumos utilizados:</label>
 						<select className="border-2 border-blue-800 rounded-xl">
-							<option value="">Aca va el listado de insumos</option>
+							{insumos?.map((i) => (
+								<option value="" key={i.id} onChange={handleChange}>
+									{i.name}
+								</option>
+							))}
 						</select>
 					</div>
 					<div className="pt-8 flex justify-center">
-						<button className=" border-2 border-blue-800 py-2 px-4 rounded-xl hover:bg-blue-800 hover:text-white font-bold">
+						<button
+							className=" border-2 border-blue-800 py-2 px-4 rounded-xl hover:bg-blue-800 hover:text-white font-bold"
+							type="submit"
+							onClick={handleSubmit}
+						>
 							Guardar cambios
 						</button>
 					</div>
