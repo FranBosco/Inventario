@@ -37,6 +37,29 @@ router.get("/", async (req, res) => {
       data_insumos.length > 0
         ? res.status(200).send(data_insumos)
         : res.status(404).send("No hay materia prima");
+    }
+
+    if (req.query.property === "difference" && req.query.order === "DESC") {
+      let data = await Productos.findAll();
+
+      let dataSort = data.sort((a, b) => {
+        if (a.difference > b.difference) return 1;
+        if (b.difference > a.difference) return -1;
+        return 0;
+      });
+
+      return res.status(200).send(dataSort);
+    }
+
+    if (req.query.property === "difference" && req.query.order === "ASC") {
+      let data = await Productos.findAll();
+
+      let dataSort = data.sort((a, b) => {
+        if (a.difference > b.difference) return -1;
+        if (b.difference > a.difference) return 1;
+        return 0;
+      });
+      return res.status(200).send(dataSort);
     } else {
       let data_total = await Insumos.findAll({
         order: [[req.query.property, req.query.order]],
