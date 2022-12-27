@@ -4,33 +4,15 @@ const { Insumos, Productos } = require("../db");
 
 const router = Router();
 
-router.get("/", async (req, res) => {
-  try {
-    let { name } = req.query;
-    let data = await materiaPrima_load();
-
-    if (name) {
-      let data_insumos = data.filter((mp) =>
-        mp.name.toLowerCase().includes(name.toLocaleLowerCase())
-      );
-      data_insumos.length > 0
-        ? res.status(200).send(data_insumos)
-        : res.status(404).send("No hay materia prima");
-    } else {
-      return res.status(200).send(data);
-    }
-  } catch (error) {
-    console.log("Rompo en rutaGet MP", error);
-  }
-});
-
+//.........................................................................................//
+// POST /insumos
 router.post("/", async (req, res) => {
   try {
     const data = req.body;
     const data_insumos = await Insumos.findAll();
 
     if (!data) {
-      res.status(400).send("Faltan campos");
+      return res.status(400).send("Faltan campos");
     } else {
       create_mp(data);
       return res.status(200).send(data);
@@ -40,6 +22,52 @@ router.post("/", async (req, res) => {
   }
 });
 
+//.........................................................................................//
+// GET /insumos
+router.get("/", async (req, res) => {
+  try {
+    let { name } = req.query;
+    let data = await materiaPrima_load();
+
+    if (name) {
+      let data_insumos = data.filter((mp) =>
+        mp.name.toLowerCase().includes(name.toLocaleLowerCase())
+      );
+
+      data_insumos.length > 0
+        ? res.status(200).send(data_insumos)
+        : res.status(404).send("No hay materia prima");
+    } else {
+      let data_total = await Insumos.findAll({
+        order: [[req.query.property, req.query.order]],
+      });
+
+      return res.status(200).send(data_total);
+    }
+  } catch (error) {
+    console.log("Rompo en rutaGet MP", error);
+  }
+});
+
+//.........................................................................................//
+// GET /insumos/:id
+router.get("/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    if (id) {
+      let data = await Insumos.findByPk(id);
+
+      data
+        ? res.status(200).send(data)
+        : res.status(404).send("No esta el detalle");
+    }
+  } catch (error) {
+    console.log("ERROR EN RUTA GET INSUMOS ID");
+  }
+});
+
+//.........................................................................................//
+// PUT /insumos/add
 router.put("/add/:id", async (req, res) => {
   try {
     let { id } = req.params;
@@ -55,6 +83,8 @@ router.put("/add/:id", async (req, res) => {
   }
 });
 
+//.........................................................................................//
+// PUT /insumos/remove
 router.put("/remove/:id", async (req, res) => {
   try {
     let { id } = req.params;
@@ -73,6 +103,8 @@ router.put("/remove/:id", async (req, res) => {
   }
 });
 
+//.........................................................................................//
+// DELETE /insumos
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {

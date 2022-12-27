@@ -29,9 +29,9 @@ const preload_products = async () => {
 // CREAR PRODUCTO
 const create_product = async (data) => {
   try {
-    const { name, stock, details, min, img, insumos } = data;
+    let { name, stock, details, min, img, insumos } = data;
 
-    const new_product = await Productos.create({
+    let new_product = await Productos.create({
       name,
       stock,
       details,
@@ -39,7 +39,7 @@ const create_product = async (data) => {
       img,
     });
 
-    const product_insumos = await Insumos.findAll({
+    let product_insumos = await Insumos.findAll({
       where: { name: insumos },
     });
 
