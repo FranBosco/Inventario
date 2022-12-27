@@ -18,7 +18,8 @@ const preInsumos = require("../json/preInsumos.json");
 //     console.log("ROMPO EN UTILS MATERIA", error);
 //   }
 // };
-
+//.........................................................................................//
+// CARGA JSON
 const preload_insumos = async () => {
   try {
     let data = preInsumos.map((insumos) => {
@@ -41,6 +42,8 @@ const preload_insumos = async () => {
   }
 };
 
+//.........................................................................................//
+// CREAR INSUMO
 const create_mp = async (data) => {
   const { name, stock, details, unidadDeMedida, min, img } = data;
   try {
@@ -52,11 +55,15 @@ const create_mp = async (data) => {
       min,
       img,
     });
+
+    return new_load;
   } catch (error) {
     console.log("ROMPO EN UTILS, CREATE MP", error);
   }
 };
 
+//.........................................................................................//
+// OBTENER INSUMO
 const materiaPrima_load = async () => {
   try {
     return await Insumos.findAll();
