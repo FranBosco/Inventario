@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInsumos } from '../redux/actions';
 import { createProd } from '../redux/actions';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Menu from './Menu';
 
 export default function CrearProd() {
 	const dispatch = useDispatch();
 	const insumos = useSelector((state) => state.allInsumos);
+	console.log('insumos', insumos);
 	const [input, setInput] = useState({
 		name: '',
 		img: '',
@@ -19,7 +20,7 @@ export default function CrearProd() {
 	});
 
 	useEffect(() => {
-		dispatch(getInsumos());
+		dispatch(getInsumos('name', 'ASC'));
 	}, [dispatch]);
 
 	const handleChange = (e) => {
@@ -40,6 +41,13 @@ export default function CrearProd() {
 			stock: 0,
 			min: 0,
 			insumos: []
+		});
+	};
+
+	const handleSelect = (e) => {
+		setInput({
+			...input,
+			insumos: [...new Set([...input.insumos, e.target.value])]
 		});
 	};
 
@@ -119,13 +127,31 @@ export default function CrearProd() {
 					</div>
 					<div className="flex flex-col sm:text-xl sm:font-bold">
 						<label>Insumos utilizados:</label>
-						<select className="border-2 border-blue-800 rounded-xl">
+						<select
+							className="border-2 border-blue-800 rounded-xl"
+							onChange={handleSelect}
+						>
 							{insumos?.map((i) => (
-								<option value="" key={i.id} onChange={handleChange}>
+								<option value={i.name} key={i.id}>
 									{i.name}
 								</option>
 							))}
 						</select>
+
+						<span>
+							{input.insumos.map((i) => (
+								<div className="flex flex-col">
+									<h2>{i}</h2>
+									<input
+										onChange={handleChange}
+										type="number"
+										placeholder="cantidad"
+										name="cantidad"
+										value={input.insumos.cantidad}
+									/>
+								</div>
+							))}
+						</span>
 					</div>
 					<div className="pt-8 flex justify-center">
 						<button

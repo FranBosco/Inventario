@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProdsById } from '../redux/actions';
 import { useParams, Link } from 'react-router-dom';
 import Menu from './Menu';
 
 export default function ProdById() {
-	const prod = useSelector((state) => state.prodById);
-	console.log('prods', prod);
 	const dispatch = useDispatch();
 	const { id } = useParams();
 	useEffect(() => {
 		dispatch(getProdsById(id));
 	}, [dispatch, id]);
+	const prod = useSelector((state) => state.prodById);
+	console.log('prods', prod);
+	console.log('insumos', prod.insumos);
 
 	return (
 		<div className="flex flex-col  sm:pl-10 justify-center">
@@ -34,9 +35,26 @@ export default function ProdById() {
 						className="border-2 border-blue-800 rounded-xl w-32 h-32 sm:w-56 sm:h-56"
 					/>
 				</div>
-				<p className="flex justify-center pt-2 sm:pt-10 sm:text-xl">
-					{prod.details}
-				</p>
+				<div className="">
+					<p className="flex justify-start pt-2 sm:pt-10 sm:text-2xl pl-2 font-bold sm:justify-center">
+						Detalle:
+					</p>
+					<p className="pl-2 sm:flex sm:justify-center sm:text-xl">
+						{prod.details}
+					</p>
+				</div>
+			</div>
+			<div className="flex  flex-col ">
+				<h1 className="flex justify-start font-bold pl-2 pt-2 sm:justify-center sm:text-2xl		">
+					Insumos necesarios:
+				</h1>
+				{prod.insumos?.map((i) => {
+					return (
+						<h1 className="flex justify-start pl-2 sm:justify-center sm:text-xl  ">
+							{i.name}:
+						</h1>
+					);
+				})}
 			</div>
 			<div className="flex justify-center  pt-4 sm:pt-12  ">
 				<table>
