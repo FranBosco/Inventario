@@ -9,6 +9,9 @@ import CrearInsumo from './components/CrearInsumo';
 import CrearProd from './components/CrearProd';
 import AllInsumos from './components/AllInsumos';
 import AllProds from './components/AllProds';
+import IdProduct from './components/IdProduct';
+import IdInsumo from './components/IdInsumo';
+import ModifyIns from './components/ModifyIns';
 
 function App() {
 	return (
@@ -22,7 +25,10 @@ function App() {
 					<Route exact path="/modif" component={ModifStock} />
 					<Route exact path="/cins" component={CrearInsumo} />
 					<Route exact path="/cprod" component={CrearProd} />
+					<Route exact path="/insumo/:id" component={IdInsumo} />
+					<Route exact path="/insumo/modif/:id" component={ModifyIns} />
 					<Route exact path="/insumos" component={AllInsumos} />
+					<Route exact path="/producto/:id" component={IdProduct} />
 					<Route exact path="/productos" component={AllProds} />
 				</Switch>
 			</div>

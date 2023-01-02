@@ -30,7 +30,7 @@ export default function SearchBarProds() {
 					value={name}
 					className="border-2 border-blue-800 rounded-xl sm:w-96"
 					type="text"
-					placeholder="   Buscar Insumo"
+					placeholder="   Buscar Producto"
 					onChange={(e) => handleChange(e)}
 				></input>
 				<button className="text-2xl " type="submit">

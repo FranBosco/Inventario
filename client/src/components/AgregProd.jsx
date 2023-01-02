@@ -32,15 +32,6 @@ export default function AgregProd() {
 							de productos fabricados
 						</h1>
 					</div>
-					<div className="pt-8 pl-2">
-						<label className="text-black text-xl pr-4">Insumos:</label>
-						<select className="">
-							<option>Insumos</option>
-						</select>
-						<h1 className="text-black">
-							Aca van los isumos que vamos cargando con un cuadro para numero
-						</h1>
-					</div>
 					<div className="flex pt-8 ">
 						<button className="text-black font-mono border-2 rounded-xl border-blue-800 py-2 px-4 hover:bg-blue-800 hover:text-white">
 							Guardar Cambios

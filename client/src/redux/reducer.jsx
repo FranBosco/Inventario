@@ -5,7 +5,11 @@ import {
 	GET_PRODUCTOS_BY_NAME,
 	GET_PRODS_HOME,
 	GET_PRODS_BY_ID,
-	getProdsById
+	GET_INSUMOS_HOME,
+	GET_INSUMO_BY_ID,
+	CREATE_PROD,
+	CREATE_INS,
+	MODIF_INS
 } from './actions';
 
 let initialState = {
@@ -14,7 +18,9 @@ let initialState = {
 	allProductos: [],
 	allProductosCopy: [],
 	prodsHome: [],
-	prodById: {}
+	prodById: {},
+	insumosHome: [],
+	insumoById: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -23,12 +29,32 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				allInsumos: action.payload,
-				allInsumosCopy: action.payload
+				allInsumosCopy: action.payload,
+				insumoById: {}
 			};
 		case GET_INSUMOS_BY_NAME:
 			return {
 				...state,
 				allInsumos: action.payload.length ? action.payload : 'not found'
+			};
+		case GET_INSUMOS_HOME:
+			return {
+				...state,
+				insumosHome: action.payload
+			};
+		case GET_INSUMO_BY_ID:
+			return {
+				...state,
+				insumoById: action.payload
+			};
+		case CREATE_INS:
+			return {
+				...state
+			};
+		case MODIF_INS:
+			return {
+				...state,
+				insumoById: action.payload
 			};
 		case GET_ALL_PRODUCTOS:
 			return {
@@ -47,12 +73,15 @@ function rootReducer(state = initialState, action) {
 				...state,
 				prodsHome: action.payload
 			};
-		case GET_PRODS_BY_ID: {
+		case GET_PRODS_BY_ID:
 			return {
 				...state,
 				prodById: action.payload
 			};
-		}
+		case CREATE_PROD:
+			return {
+				...state
+			};
 
 		default:
 			return state;

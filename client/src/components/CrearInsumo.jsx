@@ -1,8 +1,42 @@
 import React from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createInsumo } from '../redux/actions';
 import { Link } from 'react-router-dom';
 import Menu from './Menu';
 
 export default function CrearInsumo() {
+	const dispatch = useDispatch();
+	const [input, setInput] = useState({
+		name: '',
+		img: '',
+		details: '',
+		stock: 0,
+		unidadDeMedida: '',
+		min: 0
+	});
+
+	const handleChange = (e) => {
+		setInput({
+			...input,
+			[e.target.name]: e.target.value.toLowerCase()
+		});
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		dispatch(createInsumo(input));
+		alert('Insumo creado satisfactoriamente');
+		setInput({
+			name: '',
+			img: '',
+			details: '',
+			stock: 0,
+			unidadDeMedida: '',
+			min: 0
+		});
+	};
+
 	return (
 		<div className="">
 			<Link
@@ -26,8 +60,10 @@ export default function CrearInsumo() {
 						<input
 							className="border-2 border-blue-800 rounded-xl"
 							type="text"
-							name=""
+							name="name"
+							value={input.value}
 							id=""
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="flex flex-col sm:text-xl sm:font-bold ">
@@ -35,8 +71,10 @@ export default function CrearInsumo() {
 						<input
 							className="border-2 border-blue-800 rounded-xl"
 							type="number"
-							name=""
+							name="stock"
 							id=""
+							value={input.stock}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="flex flex-col sm:text-xl sm:font-bold ">
@@ -44,8 +82,10 @@ export default function CrearInsumo() {
 						<input
 							className="border-2 border-blue-800 rounded-xl"
 							type="text"
-							name=""
+							name="details"
 							id=""
+							value={input.details}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="flex flex-col sm:text-xl sm:font-bold ">
@@ -53,8 +93,10 @@ export default function CrearInsumo() {
 						<input
 							className="border-2 border-blue-800 rounded-xl"
 							type="text"
-							name=""
+							name="unidadDeMedida"
 							id=""
+							value={input.unidadDeMedida}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="flex flex-col sm:text-xl sm:font-bold">
@@ -62,8 +104,10 @@ export default function CrearInsumo() {
 						<input
 							className="border-2 border-blue-800 rounded-xl"
 							type="number"
-							name=""
+							name="min"
 							id=""
+							value={input.min}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="flex flex-col sm:text-xl sm:font-bold">
@@ -71,12 +115,18 @@ export default function CrearInsumo() {
 						<input
 							className="border-2 border-blue-800 rounded-xl"
 							type="text"
-							name=""
+							name="img"
 							id=""
+							value={input.img}
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="pt-8 flex justify-center">
-						<button className=" border-2 border-blue-800 py-2 px-4 rounded-xl hover:bg-blue-800 hover:text-white font-bold">
+						<button
+							className=" border-2 border-blue-800 py-2 px-4 rounded-xl hover:bg-blue-800 hover:text-white font-bold"
+							type="submit"
+							onClick={handleSubmit}
+						>
 							Guardar cambios
 						</button>
 					</div>
