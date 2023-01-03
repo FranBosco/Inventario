@@ -1,50 +1,53 @@
 [
-  {
-    "name": "Palet",
-    "stock": 100,
-    "details": "Palet de roble, ideal para solarium",
-    "min": 20,
-    "defaultInput": [{ "insumos": "Madera", "cantidad": 50 }],
-    "img": "Lo que vos quieras ver"
-  },
-  {
-    "name": "Puerta",
-    "stock": 10,
-    "details": "puerta de algarrobo, ideal para cerca",
-    "min": 3,
-    "defaultInput": [{ "insumos": "Algarrobo", "cantidad": 50 }],
-    "img": "Lo que vos quieras ver"
-  },
-  {
-    "name": "baldozas",
-    "stock": 200,
-    "details": "Para patio, (30 x 30)",
-    "defaultInput": [{ "insumos": "Ceramica", "cantidad": 150 }],
-    "min": 50,
-    "img": "Lo que vos quieras ver"
-  },
-  {
-    "name": "Rollo de carbono",
-    "stock": 50,
-    "details": "Hidrófugo, por lo que repele el agua. Es permeable. Permite el paso del vapor de agua.",
-    "min": 10,
-    "defaultInput": [{ "insumos": "fibra de vidrio", "cantidad": 15 }],
-    "img": "Lo que vos quieras ver"
-  },
-  {
-    "name": "Saco Canto rodado",
-    "stock": 100,
-    "details": "Saco de 50 kg",
-    "min": 10,
-    "defaultInput": [{ "insumos": "Canto rodado", "cantidad": 15 }],
-    "img": "Lo que vos quieras ver"
-  },
-  {
-    "name": "Palet de Cemento",
-    "stock": 150,
-    "details": "Palet de Cemento (7000 kg) ",
-    "defaultInput": [{ "insumos": "Cemento", "cantidad": 150 }],
-    "min": 50,
-    "img": "Lo que vos quieras ver"
-  }
+	{
+		"name": "Palet",
+		"stock": 100,
+		"details": "Palet de roble, ideal para solarium",
+		"min": 20,
+		"defaultInput": [
+			{ "insumos": "Madera", "cantidad": 50 },
+			{ "insumos": "Algarrobo", "cantidad": 30 }
+		],
+		"img": "Lo que vos quieras ver"
+	},
+	{
+		"name": "Puerta",
+		"stock": 10,
+		"details": "puerta de algarrobo, ideal para cerca",
+		"min": 3,
+		"defaultInput": [{ "insumos": "Algarrobo", "cantidad": 50 }],
+		"img": "Lo que vos quieras ver"
+	},
+	{
+		"name": "baldozas",
+		"stock": 200,
+		"details": "Para patio, (30 x 30)",
+		"defaultInput": [{ "insumos": "Ceramica", "cantidad": 150 }],
+		"min": 50,
+		"img": "Lo que vos quieras ver"
+	},
+	{
+		"name": "Rollo de carbono",
+		"stock": 50,
+		"details": "Hidrófugo, por lo que repele el agua. Es permeable. Permite el paso del vapor de agua.",
+		"min": 10,
+		"defaultInput": [{ "insumos": "fibra de vidrio", "cantidad": 15 }],
+		"img": "Lo que vos quieras ver"
+	},
+	{
+		"name": "Saco Canto rodado",
+		"stock": 100,
+		"details": "Saco de 50 kg",
+		"min": 10,
+		"defaultInput": [{ "insumos": "Canto rodado", "cantidad": 15 }],
+		"img": "Lo que vos quieras ver"
+	},
+	{
+		"name": "Palet de Cemento",
+		"stock": 150,
+		"details": "Palet de Cemento (7000 kg) ",
+		"defaultInput": [{ "insumos": "Cemento", "cantidad": 150 }],
+		"min": 50,
+		"img": "Lo que vos quieras ver"
+	}
 ]

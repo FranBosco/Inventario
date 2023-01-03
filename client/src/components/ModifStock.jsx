@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Menu from './Menu';
-import AllProdsTable from './AllProdsTable';
-import AllInsumosTable from './AllInsumosTable';
+import ProdsTableModif from './ProdsTableModif';
+import InsTableModif from './InsTableModif';
 
 export default function ModifStock() {
 	const [BtnClicked, setBtnClicked] = useState('unclicked');
@@ -67,13 +67,13 @@ export default function ModifStock() {
 			</div>
 			<div className={NextState}>
 				<div className="flex justify-center pt-8">
-					<AllProdsTable />
+					<ProdsTableModif />
 				</div>
 			</div>
 
 			<div className={NextStateI}>
 				<div className="flex justify-center pt-8">
-					<AllInsumosTable />
+					<InsTableModif />
 				</div>
 			</div>
 		</div>
