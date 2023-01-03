@@ -1,4 +1,4 @@
-const { Insumos, Productos } = require("../db");
+const { Insumos, Productos, Insumosproductos } = require("../db");
 const preProducto = require("../json/preProducto.json");
 
 //.........................................................................................//
@@ -12,7 +12,7 @@ const preload_products = async () => {
         stock: product.stock,
         details: product.details,
         min: product.min,
-        insumos: product.insumos,
+        defaultInput: product.defaultInput,
       };
     });
 
@@ -29,7 +29,7 @@ const preload_products = async () => {
 // CREAR PRODUCTO
 const create_product = async (data) => {
   try {
-    let { name, stock, details, min, img, insumos } = data;
+    let { name, stock, details, min, img, defaultInput } = data;
 
     let new_product = await Productos.create({
       name,
@@ -37,15 +37,24 @@ const create_product = async (data) => {
       details,
       min,
       img,
+      defaultInput,
     });
 
-    let product_insumos = await Insumos.findAll({
-      where: { name: insumos },
+    defaultInput.forEach(async (element) => {
+      let aux = await Insumos.findAll({
+        where: {
+          name: element.insumos,
+        },
+      });
+
+      let aux2 = element.cantidad;
+
+      let new_cantidad = Insumosproductos.create({
+        productoId: new_product.id,
+        insumoId: aux[0].dataValues.id,
+        cantidad: aux2,
+      });
     });
-
-    await new_product.addInsumos(product_insumos);
-
-    return new_product;
   } catch (error) {
     console.log("ERROR en create_product", error);
   }
@@ -71,3 +80,5 @@ module.exports = {
   get_product,
   preload_products,
 };
+
+// defaultInput = [{insumo=[], cantidad=[]}]

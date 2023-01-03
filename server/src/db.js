@@ -35,10 +35,10 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Productos, Insumos } = sequelize.models;
+const { Productos, Insumos, Insumosproductos } = sequelize.models;
 
-Productos.belongsToMany(Insumos, { through: "insumos_productos" });
-Insumos.belongsToMany(Productos, { through: "insumos_productos" });
+Insumos.belongsToMany(Productos, { through: Insumosproductos });
+Productos.belongsToMany(Insumos, { through: Insumosproductos });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

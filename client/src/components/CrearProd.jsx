@@ -1,169 +1,170 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getInsumos } from '../redux/actions';
-import { createProd } from '../redux/actions';
-import { Link } from 'react-router-dom';
-import Menu from './Menu';
+import React from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getInsumos } from "../redux/actions";
+import { createProd } from "../redux/actions";
+import { Link } from "react-router-dom";
+import Menu from "./Menu";
 
 export default function CrearProd() {
-	const dispatch = useDispatch();
-	const insumos = useSelector((state) => state.allInsumos);
-	console.log('insumos', insumos);
-	const [input, setInput] = useState({
-		name: '',
-		img: '',
-		details: '',
-		stock: 0,
-		min: 0,
-		insumos: []
-	});
+  const dispatch = useDispatch();
+  const insumos = useSelector((state) => state.allInsumos);
+  console.log("insumos", insumos);
+  const [input, setInput] = useState({
+    name: "",
+    img: "",
+    details: "",
+    stock: 0,
+    min: 0,
+    insumos: [],
+    // defaultInput: [(insumos = []), (cantidad = [])],
+  });
 
-	useEffect(() => {
-		dispatch(getInsumos('name', 'ASC'));
-	}, [dispatch]);
+  useEffect(() => {
+    dispatch(getInsumos("name", "ASC"));
+  }, [dispatch]);
 
-	const handleChange = (e) => {
-		setInput({
-			...input,
-			[e.target.name]: e.target.value.toLowerCase()
-		});
-	};
+  const handleChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value.toLowerCase(),
+    });
+  };
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		dispatch(createProd(input));
-		alert('Producto creado satisfactoriamente');
-		setInput({
-			name: '',
-			img: '',
-			details: '',
-			stock: 0,
-			min: 0,
-			insumos: []
-		});
-	};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createProd(input));
+    alert("Producto creado satisfactoriamente");
+    setInput({
+      name: "",
+      img: "",
+      details: "",
+      stock: 0,
+      min: 0,
+      insumos: [],
+    });
+  };
 
-	const handleSelect = (e) => {
-		setInput({
-			...input,
-			insumos: [...new Set([...input.insumos, e.target.value])]
-		});
-	};
+  const handleSelect = (e) => {
+    setInput({
+      ...input,
+      insumos: [...new Set([...input.insumos, e.target.value])],
+    });
+  };
 
-	return (
-		<div className="">
-			<Link
-				to="/home"
-				className="flex justify-start pt-2 pl-2 pb-2 sm:pt-8 sm:pl-8"
-			>
-				<button className="text-black font-mono hover:text-white pr-2 pl-2 border-2 border-blue-800 rounded-lg hover:bg-blue-800 sm:py-2 sm:px-8 sm:text-xl">
-					Volver
-				</button>
-			</Link>
-			<div className="sm:flex sm:justify-start sm:align-start">
-				<Menu />
-			</div>
-			<h1 className=" flex justify-center text-black text-xl font-mono font-bold pt-10 pb-10 sm:text-4xl underline">
-				Agregar un nuevo producto
-			</h1>
-			<div className="flex justify-center">
-				<form className="flex flex-col">
-					<div className="flex flex-col sm:text-xl sm:font-bold ">
-						<label className="">Nombre del producto: </label>
-						<input
-							className="border-2 border-blue-800 rounded-xl"
-							type="text"
-							name="name"
-							id=""
-							value={input.name}
-							onChange={handleChange}
-						/>
-					</div>
-					<div className="flex flex-col sm:text-xl sm:font-bold ">
-						<label>Stock inicial:</label>
-						<input
-							className="border-2 border-blue-800 rounded-xl"
-							type="number"
-							name="stock"
-							id=""
-							value={input.stock}
-							onChange={handleChange}
-						/>
-					</div>
-					<div className="flex flex-col sm:text-xl sm:font-bold ">
-						<label>Detalles del producto:</label>
-						<input
-							className="border-2 border-blue-800 rounded-xl"
-							type="text"
-							name="details"
-							id=""
-							value={input.details}
-							onChange={handleChange}
-						/>
-					</div>
+  return (
+    <div className="">
+      <Link
+        to="/home"
+        className="flex justify-start pt-2 pl-2 pb-2 sm:pt-8 sm:pl-8"
+      >
+        <button className="text-black font-mono hover:text-white pr-2 pl-2 border-2 border-blue-800 rounded-lg hover:bg-blue-800 sm:py-2 sm:px-8 sm:text-xl">
+          Volver
+        </button>
+      </Link>
+      <div className="sm:flex sm:justify-start sm:align-start">
+        <Menu />
+      </div>
+      <h1 className=" flex justify-center text-black text-xl font-mono font-bold pt-10 pb-10 sm:text-4xl underline">
+        Agregar un nuevo producto
+      </h1>
+      <div className="flex justify-center">
+        <form className="flex flex-col">
+          <div className="flex flex-col sm:text-xl sm:font-bold ">
+            <label className="">Nombre del producto: </label>
+            <input
+              className="border-2 border-blue-800 rounded-xl"
+              type="text"
+              name="name"
+              id=""
+              value={input.name}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="flex flex-col sm:text-xl sm:font-bold ">
+            <label>Stock inicial:</label>
+            <input
+              className="border-2 border-blue-800 rounded-xl"
+              type="number"
+              name="stock"
+              id=""
+              value={input.stock}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="flex flex-col sm:text-xl sm:font-bold ">
+            <label>Detalles del producto:</label>
+            <input
+              className="border-2 border-blue-800 rounded-xl"
+              type="text"
+              name="details"
+              id=""
+              value={input.details}
+              onChange={handleChange}
+            />
+          </div>
 
-					<div className="flex flex-col sm:text-xl sm:font-bold">
-						<label>Stock minimo deseado:</label>
-						<input
-							className="border-2 border-blue-800 rounded-xl"
-							type="number"
-							name="min"
-							id=""
-							value={input.min}
-							onChange={handleChange}
-						/>
-					</div>
-					<div className="flex flex-col sm:text-xl sm:font-bold">
-						<label>Imagen del producto:</label>
-						<input
-							className="border-2 border-blue-800 rounded-xl"
-							type="text"
-							name="img"
-							id=""
-							value={input.img}
-							onChange={handleChange}
-						/>
-					</div>
-					<div className="flex flex-col sm:text-xl sm:font-bold">
-						<label>Insumos utilizados:</label>
-						<select
-							className="border-2 border-blue-800 rounded-xl"
-							onChange={handleSelect}
-						>
-							{insumos?.map((i) => (
-								<option value={i.name} key={i.id}>
-									{i.name}
-								</option>
-							))}
-						</select>
+          <div className="flex flex-col sm:text-xl sm:font-bold">
+            <label>Stock minimo deseado:</label>
+            <input
+              className="border-2 border-blue-800 rounded-xl"
+              type="number"
+              name="min"
+              id=""
+              value={input.min}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="flex flex-col sm:text-xl sm:font-bold">
+            <label>Imagen del producto:</label>
+            <input
+              className="border-2 border-blue-800 rounded-xl"
+              type="text"
+              name="img"
+              id=""
+              value={input.img}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="flex flex-col sm:text-xl sm:font-bold">
+            <label>Insumos utilizados:</label>
+            <select
+              className="border-2 border-blue-800 rounded-xl"
+              onChange={handleSelect}
+            >
+              {insumos?.map((i) => (
+                <option value={i.name} key={i.id}>
+                  {i.name}
+                </option>
+              ))}
+            </select>
 
-						<span>
-							{input.insumos.map((i) => (
-								<div className="flex flex-col">
-									<h2>{i}</h2>
-									<input
-										onChange={handleChange}
-										type="number"
-										placeholder="cantidad"
-										name="cantidad"
-										value={input.insumos.cantidad}
-									/>
-								</div>
-							))}
-						</span>
-					</div>
-					<div className="pt-8 flex justify-center">
-						<button
-							className=" border-2 border-blue-800 py-2 px-4 rounded-xl hover:bg-blue-800 hover:text-white font-bold"
-							type="submit"
-							onClick={handleSubmit}
-						>
-							Guardar cambios
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	);
+            <span>
+              {input.insumos.map((i) => (
+                <div className="flex flex-col">
+                  <h2>{i}</h2>
+                  <input
+                    onChange={handleChange}
+                    type="number"
+                    placeholder="cantidad"
+                    name="cantidad"
+                    value={input.insumos.cantidad}
+                  />
+                </div>
+              ))}
+            </span>
+          </div>
+          <div className="pt-8 flex justify-center">
+            <button
+              className=" border-2 border-blue-800 py-2 px-4 rounded-xl hover:bg-blue-800 hover:text-white font-bold"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Guardar cambios
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }
