@@ -16,7 +16,7 @@ export default function CrearProd() {
     details: "",
     stock: 0,
     min: 0,
-    // insumos: []
+    insumos: [],
     // defaultInput: [(insumos = []), (cantidad = [])],
   });
 

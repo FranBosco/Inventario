@@ -16,8 +16,6 @@ const preload_products = async () => {
       };
     });
 
-    console.log("entrnadoooo", data);
-
     for (const product of data) {
       create_product(product);
     }
@@ -42,27 +40,19 @@ const create_product = async (data) => {
       defaultInput,
     });
 
-    let aux = await Insumos.findAll({
-      where: {
-        name: defaultInput.map((e) => {
-          return e.insumos;
-        }),
-      },
-    });
+    defaultInput.forEach(async (element) => {
+      let aux = await Insumos.findAll({
+        where: {
+          name: element.insumos,
+        },
+      });
 
-    console.log("puto", aux);
+      let aux2 = element.cantidad;
 
-    let aux2 = aux.map((e) => {
-      return { id: e.id };
-    });
-
-    console.log("taiere", aux2);
-
-    let new_cantidad = defaultInput.map(async (el) => {
-      return await Insumosproductos.create({
+      let new_cantidad = Insumosproductos.create({
         productoId: new_product.id,
-        insumoId: aux2.id,
-        cantidad: el.cantidad,
+        insumoId: aux[0].dataValues.id,
+        cantidad: aux2,
       });
     });
   } catch (error) {
