@@ -11,6 +11,7 @@ export default function ProdById() {
 		dispatch(getProdsById(id));
 	}, [dispatch, id]);
 	const prod = useSelector((state) => state.prodById);
+
 	console.log('prods', prod);
 	console.log('insumos', prod.insumos);
 
@@ -48,13 +49,21 @@ export default function ProdById() {
 				<h1 className="flex justify-start font-bold pl-2 pt-2 sm:justify-center sm:text-2xl		">
 					Insumos necesarios:
 				</h1>
-				{prod.insumos?.map((i) => {
+				{prod.defaultInput?.map((e) => {
+					return (
+						<h1 className="flex justify-start  pl-2  sm:justify-center sm:text-2xl">
+							{e.insumos}: {e.cantidad}
+						</h1>
+					);
+				})}
+
+				{/* {prod.insumos?.map((i) => {
 					return (
 						<h1 className="flex justify-start pl-2 sm:justify-center sm:text-xl  ">
 							{i.name}:
 						</h1>
 					);
-				})}
+				})} */}
 			</div>
 			<div className="flex justify-center  pt-4 sm:pt-12  ">
 				<table>
