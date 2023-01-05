@@ -22,7 +22,7 @@ export default function CrearProd() {
 	});
 
 	const [valueIns, setValueIns] = useState('');
-	const [valueCant, setValueCant] = useState('');
+	const [valueCant, setValueCant] = useState(0);
 	console.log('input', input);
 
 	useEffect(() => {
@@ -55,8 +55,8 @@ export default function CrearProd() {
 
 	const handleSelect = (e) => {
 		e.preventDefault();
-		console.log(e.target.value, 'vaaaal');
 		setValueIns(input.aux.insumos);
+		console.log(e.target.value, 'vaaaalue');
 
 		setInput({
 			...input,
@@ -64,6 +64,7 @@ export default function CrearProd() {
 			aux: { insumos: e.target.value }
 		});
 	};
+	console.log(input.aux, 'auxiliar');
 
 	const handleChangeCant = (e) => {
 		e.preventDefault();
@@ -78,7 +79,7 @@ export default function CrearProd() {
 		e.preventDefault();
 
 		input.defaultInput.push(input.aux);
-		setValueCant('');
+		setValueCant(0);
 		setValueIns('');
 		setInput({
 			...input,
@@ -177,19 +178,15 @@ export default function CrearProd() {
 						</select>
 						<div className="flex flex-col sm:flex-row">
 							<span value={valueCant}>
-								{input.insumos.map((i) => (
-									<div className="flex flex-col">
-										<input
-											key={i.name}
-											onChange={(e) => handleChangeCant(e)}
-											type="number"
-											placeholder="cantidad"
-											name="cantidad"
-											value={input.aux.cantidad}
-										/>
-										<button onClick={(e) => handleSubCant(e)}>Cargar</button>
-									</div>
-								))}
+								<div className="flex flex-col">
+									<input
+										onChange={(e) => handleChangeCant(e)}
+										type="number"
+										placeholder={valueCant}
+										value={input.aux.cantidad}
+									/>
+									<button onClick={(e) => handleSubCant(e)}>Cargar</button>
+								</div>
 							</span>
 						</div>
 						{input.defaultInput.map((e) => {
