@@ -5,7 +5,6 @@ import { getInsumos } from '../redux/actions';
 import { createProd } from '../redux/actions';
 import { Link } from 'react-router-dom';
 import Menu from './Menu';
-import InsTableCreateProd from './InsTableCreateProd';
 
 export default function CrearProd() {
 	const dispatch = useDispatch();
@@ -55,8 +54,8 @@ export default function CrearProd() {
 
 	const handleSelect = (e) => {
 		e.preventDefault();
-		setValueIns(input.aux.insumos);
 		console.log(e.target.value, 'vaaaalue');
+		setValueIns(e.target.value);
 
 		setInput({
 			...input,
@@ -77,14 +76,13 @@ export default function CrearProd() {
 
 	const handleSubCant = (e) => {
 		e.preventDefault();
-
 		input.defaultInput.push(input.aux);
-		setValueCant(0);
-		setValueIns('');
 		setInput({
 			...input,
 			aux: {}
 		});
+		setValueCant('');
+		setValueIns('');
 	};
 
 	//-----------------------------------------------------------------------------------------------------------------
@@ -171,7 +169,7 @@ export default function CrearProd() {
 						>
 							<option value="">Seleccione un insumo</option>
 							{allInsumos?.map((i) => (
-								<option value={input.aux.insumos} key={i.id}>
+								<option value={i.name} key={i.id}>
 									{i.name}
 								</option>
 							))}
@@ -182,8 +180,8 @@ export default function CrearProd() {
 									<input
 										onChange={(e) => handleChangeCant(e)}
 										type="number"
-										placeholder={valueCant}
-										value={input.aux.cantidad}
+										placeholder="seleccione cantidad"
+										value={valueCant}
 									/>
 									<button onClick={(e) => handleSubCant(e)}>Cargar</button>
 								</div>
@@ -198,53 +196,6 @@ export default function CrearProd() {
 							);
 						})}
 					</div>
-					{/* <div>
-						<h1 className="flex flex-col sm:text-xl sm:font-bold ">
-							Agregar insumos necesarios:
-						</h1>
-						<div className="flex flex-col justify-center">
-							<table className="table-fixed mr-2 ml-2 sm:mr-20 sm:ml-20 ">
-								<thead>
-									<tr className="text-black border-2 border-black sm:text-xl">
-										<th className="px-2 py-2 border-4 border-black sm:px-12  ">
-											Insumos
-										</th>
-										<th className="px-2 border-4 border-black sm:px-12">
-											Agregar cantidad
-										</th>
-										<th>Confirmar</th>
-									</tr>
-								</thead>
-								<tbody>
-									{allInsumos?.map((i) => {
-										return (
-											<tr
-												className="text-black border-2 border-black "
-												key={i.id}
-											>
-												<td
-													className="px-2 border-2 border-black"
-													value={input.aux.insumos}
-												>
-													{i.name}
-												</td>
-												<td className="px-2 border-2 border-black">
-													<input
-														type="number"
-														className="flex justify-center"
-														value={input.aux.cantidad}
-													/>
-												</td>
-												<td>
-													<button>cargar</button>
-												</td>
-											</tr>
-										);
-									})}
-								</tbody>
-							</table>
-						</div>
-					</div> */}
 					<div className="pt-8 flex justify-center">
 						<button
 							className=" border-2 border-blue-800 py-2 px-4 rounded-xl hover:bg-blue-800 hover:text-white font-bold"
