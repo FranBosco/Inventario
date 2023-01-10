@@ -108,6 +108,25 @@ router.put("/add/:id", async (req, res) => {
   }
 });
 
+//..............................................................................................//
+//put /insumos/add/id
+router.put("/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let edit = req.body;
+
+    if (id) {
+      let data = await Insumos.update(edit, { where: { id } });
+
+      return res.status(200).send("Insumo editado con exito");
+    } else {
+      return res.status(200).send("No se pudo editar el Insumo");
+    }
+  } catch (error) {
+    console.log("ERROR EN RUTA PUT INSUMO");
+  }
+});
+
 //.........................................................................................//
 // DELETE /insumos
 router.delete("/:id", async (req, res) => {
