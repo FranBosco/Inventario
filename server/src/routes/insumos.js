@@ -88,26 +88,10 @@ router.get("/:id", async (req, res) => {
     console.log("ERROR EN RUTA GET INSUMOS ID");
   }
 });
+
 //..............................................................................................//
-//put /insumos/id
-router.put("/:id", async (req, res) => {
-  try {
-    let { id } = req.params;
-    let edit = req.body;
-
-    if (id) {
-      let data = await Insumos.update(edit, { where: { id } });
-
-      return res.status(200).send("Insumo editado con exito");
-    } else {
-      return res.status(200).send("No se pudo editar el Insumo");
-    }
-  } catch (error) {
-    console.log("ERROR EN RUTA PUT INSUMO");
-  }
-});
-
-router.put("/:id", async (req, res) => {
+//put /insumos/add/id
+router.put("/add/:id", async (req, res) => {
   try {
     let { id } = req.params;
     let edit = req.body;
@@ -123,43 +107,6 @@ router.put("/:id", async (req, res) => {
     console.log("ERROR EN RUTA PUT INSUMO");
   }
 });
-
-//.........................................................................................//
-// PUT /insumos/add
-// router.put('/add/:id', async (req, res) => {
-// 	try {
-// 		let { id } = req.params;
-// 		let insumos = await Insumos.findByPk(id);
-
-// 		await insumos.update({
-// 			...insumos,
-// 			stock: insumos.stock + 1
-// 		});
-// 		return res.status(200).send('Unidad Agregada con exito');
-// 	} catch (error) {
-// 		console.log('ROMPO EN RUTA PUT INSUMOS', error);
-// 	}
-// });
-
-//.........................................................................................//
-// PUT /insumos/remove
-// router.put('/remove/:id', async (req, res) => {
-// 	try {
-// 		let { id } = req.params;
-// 		let insumos = await Insumos.findByPk(id);
-// 		if (insumos.stock === 0) {
-// 			return res.status(404).send('El producto no tiene insumos.');
-// 		}
-
-// 		await insumos.update({
-// 			...insumos,
-// 			stock: insumos.stock - 1
-// 		});
-// 		return res.status(200).send('Insumo quitado');
-// 	} catch (error) {
-// 		console.log('ERROR EN LA RUTA PUT/REMOVE', error);
-// 	}
-// });
 
 //.........................................................................................//
 // DELETE /insumos
