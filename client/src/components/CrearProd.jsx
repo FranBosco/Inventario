@@ -21,7 +21,7 @@ export default function CrearProd() {
 	});
 
 	const [valueIns, setValueIns] = useState('');
-	const [valueCant, setValueCant] = useState(0);
+	const [valueCant, setValueCant] = useState('');
 	console.log('input', input);
 
 	useEffect(() => {
@@ -176,7 +176,7 @@ export default function CrearProd() {
 						</select>
 						<div className="flex flex-col sm:flex-row">
 							<span value={valueCant}>
-								<div className="flex flex-col">
+								<div className="flex flex-col sm:pt-4 rounded-xl">
 									<input
 										onChange={(e) => handleChangeCant(e)}
 										type="number"

@@ -10,6 +10,7 @@ export const GET_INSUMO_BY_ID = 'GET_INSUMO_BY_ID';
 export const CREATE_PROD = 'CREATE_PROD';
 export const CREATE_INS = 'CREATE_INS';
 export const MODIF_INS = 'MODIF_INS';
+export const MODIF_PROD = 'MODIF_PROD';
 
 //RUTAS INSUMOS
 /* - Traer todos los insumos (para el listado)
@@ -206,3 +207,64 @@ export function createProd(payload) {
 		}
 	};
 }
+
+export const modifyProd = (
+	id,
+	name,
+	img,
+	details,
+	stock,
+	min,
+	defaultInput,
+	difference
+) => {
+	return async function (dispatch) {
+		try {
+			const info = await axios.put(`http://localhost:3001/productos/${id}`, {
+				name,
+				img,
+				details,
+				stock,
+				min,
+				defaultInput,
+				difference
+			});
+			return dispatch({
+				type: MODIF_PROD,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+/*  export const modifyInsumo = (
+	id,
+	name,
+	img,
+	details,
+	stock,
+	unidadDeMedida,
+	min
+) => {
+	return async function (dispatch) {
+		try {
+			const info = await axios.put(`http://localhost:3001/insumos/${id}`, {
+				name,
+				img,
+				details,
+				stock,
+				min,
+				unidadDeMedida
+			});
+
+			return dispatch({
+				type: MODIF_INS,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}; */

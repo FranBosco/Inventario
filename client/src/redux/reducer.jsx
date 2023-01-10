@@ -9,7 +9,8 @@ import {
 	GET_INSUMO_BY_ID,
 	CREATE_PROD,
 	CREATE_INS,
-	MODIF_INS
+	MODIF_INS,
+	MODIF_PROD
 } from './actions';
 
 let initialState = {
@@ -20,7 +21,8 @@ let initialState = {
 	prodsHome: [],
 	prodById: {},
 	insumosHome: [],
-	insumoById: {}
+	insumoById: {},
+	prodById: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -81,6 +83,11 @@ function rootReducer(state = initialState, action) {
 		case CREATE_PROD:
 			return {
 				...state
+			};
+		case MODIF_PROD:
+			return {
+				...state,
+				prodById: action.payload
 			};
 
 		default:
