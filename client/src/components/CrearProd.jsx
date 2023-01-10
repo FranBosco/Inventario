@@ -57,6 +57,7 @@ export default function CrearProd() {
 		console.log(e.target.value, 'vaaaalue');
 		setValueIns(e.target.value);
 
+
 		setInput({
 			...input,
 			insumos: [...new Set([...input.insumos, e.target.value])],
@@ -182,6 +183,7 @@ export default function CrearProd() {
 										type="number"
 										placeholder="seleccione cantidad"
 										value={valueCant}
+
 									/>
 									<button onClick={(e) => handleSubCant(e)}>Cargar</button>
 								</div>
