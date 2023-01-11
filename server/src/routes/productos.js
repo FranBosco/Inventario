@@ -127,7 +127,7 @@ router.put("/add/:id", async (req, res) => {
       stock: Number(prod.stock) + Number(edit.stock),
     });
 
-    return res.status(200).send("Producto editado con exito");
+    return res.status(200).send("Stock agregado con exito");
   } catch (error) {
     console.log("ERROR EN RUTA PUT ADD PRODUCTO");
   }
