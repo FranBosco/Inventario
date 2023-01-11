@@ -1,8 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProdsById } from '../redux/actions';
+import { modifyProd } from '../redux/actions';
+import { getProductos } from '../redux/actions';
+import { useParams, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Menu from './Menu';
 
-export default function AgregProd() {
+export default function AgregVentas() {
+	const dispatch = useDispatch();
+	const { id } = useParams();
+	const history = useHistory();
+	const productos = useSelector((state) => state.allProductos);
+	const [property, setProperty] = useState('name');
+	const [order, setOrder] = useState('ASC');
+	useEffect(() => {
+		dispatch(getProductos(property, order));
+	}, [dispatch, property, order]);
 	return (
 		<div className="">
 			<Link to="/home" className="flex justify-start pt-2 pl-2">
@@ -22,11 +36,10 @@ export default function AgregProd() {
 						<label className="text-black text-xl pr-4">Producto:</label>
 						<select className="">
 							<option>Producto</option>
+							{productos.map((p) => {
+								<option value="">{p.name}</option>;
+							})}
 						</select>
-						<h1 className="text-black">
-							Aca van los productos que vamos cargando con un cuadro para numero
-							de productos fabricados
-						</h1>
 					</div>
 
 					<div className="flex pt-8 sm:pl-10">

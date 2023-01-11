@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getInsumos } from '../redux/actions';
+import { getInsumos, addStockInsumo } from '../redux/actions';
 import { RiEdit2Line } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FaArrowDown } from 'react-icons/fa';
 import { FaArrowUp } from 'react-icons/fa';
 import SearchBarInsumos from './SearchBarInsumos';
@@ -10,6 +10,9 @@ import SearchBarInsumos from './SearchBarInsumos';
 export default function AllProdsTable() {
 	const insumos = useSelector((state) => state.allInsumos);
 	const dispatch = useDispatch();
+
+	const [input, setInput] = useState(0);
+	const [id, setId] = useState('');
 
 	const [property, setProperty] = useState('name');
 	const [order, setOrder] = useState('ASC');
@@ -54,6 +57,20 @@ export default function AllProdsTable() {
 		setProperty('difference');
 		setOrder('DESC');
 	};
+
+	const handleChange = (e) => {
+		setInput(e.target.value);
+		setId(e.target.name);
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		dispatch(addStockInsumo(id, input));
+		alert('stock modificado');
+		dispatch(getInsumos(property, order));
+		window.location.reload();
+	};
+
 	useEffect(() => {
 		dispatch(getInsumos(property, order));
 	}, [dispatch, property, order]);
@@ -132,13 +149,24 @@ export default function AllProdsTable() {
 								)}
 
 								<td className="px-2 border-2 border-black">
-									<input type="number" className="font-bold" />
+									<input
+										type="number"
+										className="font-bold"
+										onChange={(e) => handleChange(e)}
+										name={i.id}
+										placeholder="seleccione cantidad"
+									/>
 								</td>
 							</tr>
 						);
 					})}
 				</tbody>
 			</table>
+			<div className="flex justify-center">
+				<button onClick={handleSubmit} className="border-2">
+					Guardar
+				</button>
+			</div>
 		</div>
 	);
 }
