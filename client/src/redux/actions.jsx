@@ -11,6 +11,7 @@ export const CREATE_PROD = 'CREATE_PROD';
 export const CREATE_INS = 'CREATE_INS';
 export const MODIF_INS = 'MODIF_INS';
 export const MODIF_PROD = 'MODIF_PROD';
+export const ADD_STOCK_INSUMOS = 'ADD_STOCK_INSUMOS';
 
 //RUTAS INSUMOS
 /* - Traer todos los insumos (para el listado)
@@ -123,6 +124,22 @@ export const modifyInsumo = (
 		}
 	};
 };
+
+export function addStockInsumo(id, payload) {
+	try {
+		return async function (dispatch) {
+			const obj = { stock: payload };
+			var info = await axios.put(
+				`http://localhost:3001/insumos/add/${id}`,
+				obj
+			);
+			return dispatch({
+				type: ADD_STOCK_INSUMOS,
+				payload: info.data
+			});
+		};
+	} catch (error) {}
+}
 
 //RUTAS PRODUCTOS
 /*
