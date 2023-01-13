@@ -116,6 +116,25 @@ router.get("/:id", async (req, res) => {
 
 //.........................................................................................//
 // PUT /productos
+router.put("/add/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let edit = req.body;
+    let prod = await Productos.findByPk(id);
+
+    await prod.update({
+      ...prod,
+      stock: Number(prod.stock) + Number(edit.stock),
+    });
+
+    return res.status(200).send("Stock agregado con exito");
+  } catch (error) {
+    console.log("ERROR EN RUTA PUT ADD PRODUCTO");
+  }
+});
+
+//.........................................................................................//
+// PUT /productos
 router.put("/:id", async (req, res) => {
   try {
     let { id } = req.params;
