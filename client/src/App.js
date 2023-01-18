@@ -12,6 +12,7 @@ import AllProds from './components/AllProds';
 import IdProduct from './components/IdProduct';
 import IdInsumo from './components/IdInsumo';
 import ModifyIns from './components/ModifyIns';
+import ModifyProd from './components/ModifyProd';
 
 function App() {
 	return (
@@ -27,6 +28,7 @@ function App() {
 					<Route exact path="/cprod" component={CrearProd} />
 					<Route exact path="/insumo/:id" component={IdInsumo} />
 					<Route exact path="/insumo/modif/:id" component={ModifyIns} />
+					<Route exact path="/producto/modif/:id" component={ModifyProd} />
 					<Route exact path="/insumos" component={AllInsumos} />
 					<Route exact path="/producto/:id" component={IdProduct} />
 					<Route exact path="/productos" component={AllProds} />
