@@ -15,17 +15,7 @@ export const ADD_STOCK_INSUMOS = 'ADD_STOCK_INSUMOS';
 export const ADD_VENTA = 'ADD_VENTA';
 export const ADD_STOCK_PRODUCTOS = 'ADD_STOCK_PRODUCTOS';
 
-//RUTAS INSUMOS
-/* - Traer todos los insumos (para el listado)
-   - Traer los x primeros insumos para las tablas del home
-   - Crear un insumo nuevo
-   - Eliminar un insumo existente
-   - Modificar el stock de un insumo
-   - Traer insumo por Id
-   - Ordenar insumo por nombre
-   - Ordenar insumo por diferencia entre Stock y minmio    
-    */
-
+//Traer todos los insumos
 export function getInsumos(property, order) {
 	try {
 		return async function (dispatch) {
@@ -42,6 +32,7 @@ export function getInsumos(property, order) {
 	}
 }
 
+// Buscar por nombre los insumos
 export function searchByNameI(name) {
 	return async function (dispatch) {
 		try {
@@ -59,6 +50,7 @@ export function searchByNameI(name) {
 	};
 }
 
+//Traer los insumos que se van a ver en la homepage
 export function getInsumosHome() {
 	try {
 		return async function (dispatch) {
@@ -71,6 +63,7 @@ export function getInsumosHome() {
 	} catch (error) {}
 }
 
+// Traer un insumo en particular
 export function getInsumoId(id) {
 	try {
 		return async function (dispatch) {
@@ -83,6 +76,7 @@ export function getInsumoId(id) {
 	} catch (error) {}
 }
 
+//Crear un insumo
 export function createInsumo(payload) {
 	return async function (dispatch) {
 		try {
@@ -97,6 +91,7 @@ export function createInsumo(payload) {
 	};
 }
 
+//Editar un insumo
 export const modifyInsumo = (
 	id,
 	name,
@@ -127,6 +122,7 @@ export const modifyInsumo = (
 	};
 };
 
+//Agregar stock a un insumo
 export function addStockInsumo(id, payload) {
 	try {
 		return async function (dispatch) {
@@ -143,18 +139,7 @@ export function addStockInsumo(id, payload) {
 	} catch (error) {}
 }
 
-//RUTAS PRODUCTOS
-/*
-- Traer todos los productos (para el listado)
-   - Traer los x primeros productos para las tablas del home
-   - Crear un producto nuevo
-   - Eliminar un preducto existente
-   - Modificar el stock de un producto
-   - Traer producto por Id
-   - Ordenar producto por nombre
-   - Ordenar producto por diferencia entre Stock y minimio 
- */
-
+//Traer todos los inmsumos
 export function getProductos(property, order) {
 	try {
 		return async function (dispatch) {
@@ -172,6 +157,7 @@ export function getProductos(property, order) {
 	}
 }
 
+//Busqueda de productos por nombre
 export function searchByNameP(name) {
 	return async function (dispatch) {
 		try {
@@ -189,6 +175,7 @@ export function searchByNameP(name) {
 	};
 }
 
+//Traer los productos para la tabla del home
 export function getProdsHome() {
 	try {
 		return async function (dispatch) {
@@ -201,6 +188,7 @@ export function getProdsHome() {
 	} catch (error) {}
 }
 
+//Traer un producto en particular
 export function getProdsById(id) {
 	try {
 		return async function (dispatch) {
@@ -213,6 +201,7 @@ export function getProdsById(id) {
 	} catch (error) {}
 }
 
+//Crear un producto
 export function createProd(payload) {
 	return async function (dispatch) {
 		try {
@@ -227,6 +216,7 @@ export function createProd(payload) {
 	};
 }
 
+//Editar un producto
 export const modifyProd = (
 	id,
 	name,
@@ -258,14 +248,12 @@ export const modifyProd = (
 	};
 };
 
+//Agregar venta (resta del stock la cantidad vendida)
 export function addVenta(id, payload) {
 	try {
 		return async function (dispatch) {
 			const obj = { stock: payload };
-			var info = await axios.put(
-				`http://localhost:3001/productos/add/${id}`,
-				obj
-			);
+			var info = await axios.put(`http://localhost:3001/ventas/${id}`, obj);
 			return dispatch({
 				type: ADD_VENTA,
 				payload: info.data
@@ -274,12 +262,13 @@ export function addVenta(id, payload) {
 	} catch (error) {}
 }
 
+//Modifica stock de productos
 export function addStockProducto(id, payload) {
 	try {
 		return async function (dispatch) {
 			const obj = { stock: payload };
 			var info = await axios.put(
-				`http://localhost:3001/productos/adds/${id}`,
+				`http://localhost:3001/productos/add/${id}`,
 				obj
 			);
 			return dispatch({
@@ -289,32 +278,3 @@ export function addStockProducto(id, payload) {
 		};
 	} catch (error) {}
 }
-/*  export const modifyInsumo = (
-	id,
-	name,
-	img,
-	details,
-	stock,
-	unidadDeMedida,
-	min
-) => {
-	return async function (dispatch) {
-		try {
-			const info = await axios.put(`http://localhost:3001/insumos/${id}`, {
-				name,
-				img,
-				details,
-				stock,
-				min,
-				unidadDeMedida
-			});
-
-			return dispatch({
-				type: MODIF_INS,
-				payload: info.data
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	};
-}; */

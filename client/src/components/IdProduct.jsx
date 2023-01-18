@@ -92,7 +92,10 @@ export default function ProdById() {
 					</tbody>
 				</table>
 			</div>
-			<Link to="/" className="flex justify-center pt-4 sm:pt-12 ">
+			<Link
+				to={`/producto/modif/${id}`}
+				className="flex justify-center pt-4 sm:pt-12 "
+			>
 				<button className="text-black font-mono border-2 rounded-xl border-blue-800 py-2 px-4 hover:bg-blue-800 hover:text-white  ">
 					Modificar
 				</button>
