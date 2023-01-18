@@ -9,6 +9,7 @@ import Menu from './Menu';
 export default function CrearProd() {
 	const dispatch = useDispatch();
 	const allInsumos = useSelector((state) => state.allInsumos);
+
 	const [input, setInput] = useState({
 		name: '',
 		img: '',
@@ -56,7 +57,6 @@ export default function CrearProd() {
 		e.preventDefault();
 		console.log(e.target.value, 'vaaaalue');
 		setValueIns(e.target.value);
-
 
 		setInput({
 			...input,
@@ -183,7 +183,6 @@ export default function CrearProd() {
 										type="number"
 										placeholder="seleccione cantidad"
 										value={valueCant}
-
 									/>
 									<button onClick={(e) => handleSubCant(e)}>Cargar</button>
 								</div>

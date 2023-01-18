@@ -12,6 +12,8 @@ export const CREATE_INS = 'CREATE_INS';
 export const MODIF_INS = 'MODIF_INS';
 export const MODIF_PROD = 'MODIF_PROD';
 export const ADD_STOCK_INSUMOS = 'ADD_STOCK_INSUMOS';
+export const ADD_VENTA = 'ADD_VENTA';
+export const ADD_STOCK_PRODUCTOS = 'ADD_STOCK_PRODUCTOS';
 
 //RUTAS INSUMOS
 /* - Traer todos los insumos (para el listado)
@@ -256,6 +258,37 @@ export const modifyProd = (
 	};
 };
 
+export function addVenta(id, payload) {
+	try {
+		return async function (dispatch) {
+			const obj = { stock: payload };
+			var info = await axios.put(
+				`http://localhost:3001/productos/add/${id}`,
+				obj
+			);
+			return dispatch({
+				type: ADD_VENTA,
+				payload: info.data
+			});
+		};
+	} catch (error) {}
+}
+
+export function addStockProducto(id, payload) {
+	try {
+		return async function (dispatch) {
+			const obj = { stock: payload };
+			var info = await axios.put(
+				`http://localhost:3001/productos/adds/${id}`,
+				obj
+			);
+			return dispatch({
+				type: ADD_STOCK_PRODUCTOS,
+				payload: info.data
+			});
+		};
+	} catch (error) {}
+}
 /*  export const modifyInsumo = (
 	id,
 	name,
