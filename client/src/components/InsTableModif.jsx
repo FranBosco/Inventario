@@ -7,7 +7,7 @@ import { FaArrowDown } from 'react-icons/fa';
 import { FaArrowUp } from 'react-icons/fa';
 import SearchBarInsumos from './SearchBarInsumos';
 
-export default function AllProdsTable() {
+export default function AllInsTable() {
 	const insumos = useSelector((state) => state.allInsumos);
 	const dispatch = useDispatch();
 
