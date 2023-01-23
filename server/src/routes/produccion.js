@@ -3,7 +3,7 @@ const { Insumos, Productos } = require("../db");
 
 const router = Router();
 
-router.post("/", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     let { id } = req.params;
     let edit = req.body;
@@ -14,16 +14,18 @@ router.post("/", async (req, res) => {
       stock: Number(prod.stock) + Number(edit.stock),
     });
 
-    prod.defaultInput.forEach(async (element) => {
+    await prod.defaultInput.forEach(async (element) => {
       let aux = await Insumos.findAll({
-        name: element.insumos,
+        where: { name: element.insumos },
       });
+      let aux2 = aux[0];
 
-      await aux.update({
-        ...aux,
-        stock: Number(aux.stock) - Number(element.cantidad) * Number(edit),
+      await aux2.update({
+        ...aux2,
+        stock: Number(aux2.stock) - Number(element.cantidad) * edit.stock,
       });
     });
+    return res.status(200).send("Produccion agregada con exito");
   } catch (error) {
     console.log("ERROR EN RUTA PUT PRODUCCION", error);
   }
