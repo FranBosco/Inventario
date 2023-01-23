@@ -13,7 +13,8 @@ import {
 	MODIF_PROD,
 	ADD_STOCK_INSUMOS,
 	ADD_VENTA,
-	ADD_STOCK_PRODUCTOS
+	ADD_STOCK_PRODUCTOS,
+	ADD_PRODUCCION
 } from './actions';
 
 let initialState = {
@@ -103,6 +104,11 @@ function rootReducer(state = initialState, action) {
 				prodById: action.payload
 			};
 		case ADD_STOCK_PRODUCTOS:
+			return {
+				...state,
+				prodById: action.payload
+			};
+		case ADD_PRODUCCION:
 			return {
 				...state,
 				prodById: action.payload

@@ -149,7 +149,7 @@ import SearchBarProds from './SearchBarProds';
 
 import Menu from './Menu';
 
-export default function AllProdsTable() {
+export default function AgregVenta() {
 	const prods = useSelector((state) => state.allProductos);
 	const dispatch = useDispatch();
 
@@ -233,6 +233,9 @@ export default function AllProdsTable() {
 			<h1 className="flex justify-center text-black text-2xl sm:text-3xl underline font-bold pb-4	 ">
 				Agregar Ventas
 			</h1>
+			<p className="flex justify-center ml-4 mr-4 sm:pb-4">
+				Agregar productos vendidos para restar del stock los mismos
+			</p>
 			<div className="sm:flex sm:flex-col sm:justify-center pl-2 pt-2 pb-2 sm:pl-20 ">
 				<SearchBarProds className="" />
 				<button

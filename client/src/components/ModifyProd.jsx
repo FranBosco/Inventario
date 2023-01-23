@@ -72,10 +72,13 @@ export default function ModifyIns() {
 			<div className="sm:flex sm:justify-start sm:align-start">
 				<Menu />
 			</div>
-			<div className="flex flex-row space-x-2 justify-center ">
+			<div className="flex flex-row space-x-2 justify-center sm:pb-4 ">
 				<h1 className="text-xl">Modificar producto: </h1>
 				<h1 className="text-xl font-bold">{prod.name}</h1>
 			</div>
+			<p className="flex justify-center ml-4 mr-4 pb-4 pt-4">
+				Modificar las características del producto indicado
+			</p>
 			<div className="flex flex-col justify-center pt-8">
 				<div className="flex flex-row pb-4 justify-center  ">
 					<h3 className="pr-2">Nombre:</h3>

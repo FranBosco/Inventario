@@ -24,9 +24,12 @@ export default function AllInsumos() {
 			<div className="sm:flex sm:justify-start sm:align-start pt-2 pl-2 pb-2 sm:pt-8 sm:pl-8">
 				<Menu />
 			</div>
-			<h1 className=" flex justify-center text-black text-2xl font-mono font-bold pt-10 pb-10 sm:text-4xl underline text-blue-800  ">
+			<h1 className=" flex justify-center text-black text-2xl font-mono font-bold pt-10 pb-8 sm:text-4xl underline text-blue-800  ">
 				Insumos
 			</h1>
+			<p className="flex justify-center ml-4 mr-4 pb-4">
+				Listado de todos los insumos
+			</p>
 			<AllInsumosTable />
 		</div>
 	);
