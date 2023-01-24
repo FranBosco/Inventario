@@ -47,9 +47,12 @@ export default function ModifStock() {
 				<Menu />
 			</div>
 
-			<h1 className=" flex justify-center text-black text-xl font-mono font-bold pt-10 pb-10 sm:text-4xl underline">
+			<h1 className=" flex justify-center text-black text-xl font-mono font-bold pt-10 pb-8 sm:text-4xl underline">
 				Modificar Stock
 			</h1>
+			<p className="flex justify-center ml-4 mr-4 pb-4">
+				Modifique manualmente los stocks de productos e insumos
+			</p>
 
 			<div className="flex justify-center text-black text-xl">
 				<button
@@ -66,13 +69,13 @@ export default function ModifStock() {
 				</button>
 			</div>
 			<div className={NextState}>
-				<div className="flex justify-center pt-8">
+				<div className="flex sm:justify-center pt-8">
 					<ProdsTableModif />
 				</div>
 			</div>
 
 			<div className={NextStateI}>
-				<div className="flex justify-center pt-8">
+				<div className="flex sm:justify-center pt-8">
 					<InsTableModif />
 				</div>
 			</div>

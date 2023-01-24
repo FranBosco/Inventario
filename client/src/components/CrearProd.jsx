@@ -104,6 +104,9 @@ export default function CrearProd() {
 			<h1 className=" flex justify-center text-black text-xl font-mono font-bold pt-10 pb-10 sm:text-4xl underline">
 				Agregar un nuevo producto
 			</h1>
+			<p className="flex justify-center ml-4 mr-4 pb-4 sm:pb-8">
+				Agregar un nuevo producto detallando las características del mismo
+			</p>
 			<div className="flex justify-center">
 				<form className="flex flex-col">
 					<div className="flex flex-col sm:text-xl sm:font-bold ">

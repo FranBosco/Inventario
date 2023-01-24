@@ -14,6 +14,7 @@ export const MODIF_PROD = 'MODIF_PROD';
 export const ADD_STOCK_INSUMOS = 'ADD_STOCK_INSUMOS';
 export const ADD_VENTA = 'ADD_VENTA';
 export const ADD_STOCK_PRODUCTOS = 'ADD_STOCK_PRODUCTOS';
+export const ADD_PRODUCCION = 'ADD_PRODUCCION';
 
 //Traer todos los insumos
 export function getInsumos(property, order) {
@@ -273,6 +274,19 @@ export function addStockProducto(id, payload) {
 			);
 			return dispatch({
 				type: ADD_STOCK_PRODUCTOS,
+				payload: info.data
+			});
+		};
+	} catch (error) {}
+}
+
+export function addProduccion(id, payload) {
+	try {
+		return async function (dispatch) {
+			const obj = { stock: payload };
+			var info = await axios.put(`http://localhost:3001/produccion/${id}`, obj);
+			return dispatch({
+				type: ADD_PRODUCCION,
 				payload: info.data
 			});
 		};
