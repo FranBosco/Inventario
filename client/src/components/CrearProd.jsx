@@ -20,6 +20,13 @@ export default function CrearProd() {
 		defaultInput: [],
 		aux: {}
 	});
+	const [image, setImage] = useState("")
+	const [link, setLink] = useState("")
+
+    const [loading, setLoading] = React.useState(1)
+
+    const [errors, setErrors] = React.useState({})
+
 
 	const [valueIns, setValueIns] = useState('');
 	const [valueCant, setValueCant] = useState('');
@@ -85,6 +92,67 @@ export default function CrearProd() {
 		setValueCant('');
 		setValueIns('');
 	};
+
+	//---------
+
+	const handleimg = async (e) => {
+        const files = e.target.files;
+        const data = new FormData();
+        let size = 0; //toma valor numerico del archivo.
+        if (files) {
+            size += files[0].size;
+        }
+
+        data.append('file', files[0]);
+        data.append('upload_preset', 'gestorDeInventario');
+        
+        try {
+            const res = await fetch(
+                'https://api.cloudinary.com/v1_1/dwblsrtdb/image/upload',
+                {
+                    method: 'POST',
+                    body: data
+                }
+            );
+            const file = await res.json();
+            let array = file.secure_url.split('.');
+            let format = array[array.length - 1];
+
+            if (size > 2000000) {
+                setErrors({
+                    ...errors,
+                    img: 'El archivo es demasiado grande'
+                });
+            } else {
+                if (format === 'jpg' || format === 'png') {
+                    setErrors({
+                        ...errors,
+                        img: ""
+                    });
+                    setImage(file.secure_url);
+                    setLoading(0);
+                    setInput({
+						...input,
+						img: file.secure_url,
+					})
+                } else {
+                    setErrors({
+                        ...errors,
+                        img: 'Solo se admiten archivos formato jpeg o png'
+                    });
+                    setLoading(1);
+                }
+            }
+        } catch (error) {
+            setErrors({
+                ...errors,
+                img: 'Solo se admiten archivos formato jpeg o png'
+            });
+            setLoading(1);
+        }
+    };
+
+
 
 	//-----------------------------------------------------------------------------------------------------------------
 
@@ -153,7 +221,7 @@ export default function CrearProd() {
 							onChange={handleChange}
 						/>
 					</div>
-					<div className="flex flex-col sm:text-xl sm:font-bold">
+					{/* <div className="flex flex-col sm:text-xl sm:font-bold">
 						<label>Imagen del producto:</label>
 						<input
 							className="border-2 border-blue-800 rounded-xl"
@@ -163,7 +231,7 @@ export default function CrearProd() {
 							value={input.img}
 							onChange={handleChange}
 						/>
-					</div>
+					</div> */}
 					<div className="flex flex-col sm:text-xl sm:font-bold">
 						<label>Insumos utilizados:</label>
 						<select
@@ -200,7 +268,34 @@ export default function CrearProd() {
 							);
 						})}
 					</div>
-					<div className="pt-8 flex justify-center">
+
+					<div>
+			<input
+                    id="inputFile"
+                    type="file"
+                    name="image"
+                    onChange={(e) => handleimg(e)}
+                />
+				{/* {loading === 2 ? (
+                    <p>
+                        Cargando imagen...
+                    </p>
+                ) : (
+                    false */}
+                {/* )} */}
+                {loading === 0 ? (
+                    <div>
+                        <br />
+                        <img src={image} alt="" />
+                        <br />
+                    </div>
+                ) : (
+                    false
+                )}
+                {errors.img ? errors.img : false}<br /><button onClick={e => handleSubmit(e)}>Guardar cambios</button>
+				</div> 
+
+					{/* <div className="pt-8 flex justify-center">
 						<button
 							className=" border-2 border-blue-800 py-2 px-4 rounded-xl hover:bg-blue-800 hover:text-white font-bold"
 							type="submit"
@@ -208,7 +303,7 @@ export default function CrearProd() {
 						>
 							Guardar cambios
 						</button>
-					</div>
+					</div> */}
 				</form>
 			</div>
 		</div>
