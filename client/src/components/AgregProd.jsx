@@ -13,14 +13,7 @@ export default function AgregProduccion() {
 	const prods = useSelector((state) => state.allProductos);
 	const dispatch = useDispatch();
 
-	const [input, setInput] = useState(0);
-	const [id, setId] = useState('');
-	// const [input, setInput] = useState({
-	// 	property: "name",
-	// 	order: "ASC",
-	// 	id: '',
-	// 	input: 0
-	// })
+	const [produccion, setProduccion] = useState([]);
 
 	const [property, setProperty] = useState('name');
 	const [order, setOrder] = useState('ASC');
@@ -28,7 +21,7 @@ export default function AgregProduccion() {
 		setProperty('name');
 		setOrder('ASC');
 
-		dispatch(getProductos(input.property, input.order));
+		// dispatch(getProductos(input.property, input.order));
 	}
 
 	const handleOrderNameASC = (e) => {
@@ -68,13 +61,19 @@ export default function AgregProduccion() {
 	};
 
 	const handleChange = (e) => {
-		setInput(e.target.value);
-		setId(e.target.name);
+		// setInput(e.target.value);
+		// setId(e.target.name);
+		setProduccion((prevState) => {
+			const newState = [...prevState];
+			newState[e.target.name] = { id: e.target.name, stock: e.target.value };
+			console.log(newState, 'state');
+			return newState;
+		});
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(addProduccion(id, input));
+		dispatch(addProduccion(produccion));
 		alert('stock modificado');
 		dispatch(getProductos(property, order));
 		window.location.reload();
