@@ -11,9 +11,7 @@ export default function AllInsTable() {
 	const insumos = useSelector((state) => state.allInsumos);
 	const dispatch = useDispatch();
 
-	const [input, setInput] = useState(0);
-	const [id, setId] = useState('');
-
+	const [data, setData] = useState([]);
 	const [property, setProperty] = useState('name');
 	const [order, setOrder] = useState('ASC');
 	function handleRefresh() {
@@ -59,13 +57,19 @@ export default function AllInsTable() {
 	};
 
 	const handleChange = (e) => {
-		setInput(e.target.value);
-		setId(e.target.name);
+		// setInput(e.target.value);
+		// setId(e.target.name);
+		setData((prevState) => {
+			const newState = [...prevState];
+			newState[e.target.name] = { id: e.target.name, stock: e.target.value };
+
+			return newState;
+		});
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(addStockInsumo(id, input));
+		dispatch(addStockInsumo(data));
 		alert('stock modificado');
 		dispatch(getInsumos(property, order));
 		window.location.reload();

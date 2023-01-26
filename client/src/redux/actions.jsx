@@ -124,14 +124,11 @@ export const modifyInsumo = (
 };
 
 //Agregar stock a un insumo
-export function addStockInsumo(id, payload) {
+export function addStockInsumo(payload) {
 	try {
 		return async function (dispatch) {
-			const obj = { stock: payload };
-			var info = await axios.put(
-				`http://localhost:3001/insumos/add/${id}`,
-				obj
-			);
+			var info = await axios.put(`http://localhost:3001/insumos/add/`, payload);
+			console.log(payload, 'payloadaddins');
 			return dispatch({
 				type: ADD_STOCK_INSUMOS,
 				payload: info.data
@@ -139,6 +136,19 @@ export function addStockInsumo(id, payload) {
 		};
 	} catch (error) {}
 }
+
+/* export function addStockProducto(payload) {
+	try {
+		return async function (dispatch) {
+			var info = await axios.put(
+				`http://localhost:3001/productos/add/`, payload);
+			return dispatch({
+				type: ADD_STOCK_PRODUCTOS,
+				payload: info.data
+			});
+		};
+	} catch (error) {}
+}  */
 
 //Traer todos los inmsumos
 export function getProductos(property, order) {
@@ -250,19 +260,6 @@ export const modifyProd = (
 };
 
 //Agregar venta (resta del stock la cantidad vendida)
-// export function addVenta(id, payload) {
-// 	try {
-// 		return async function (dispatch) {
-// 			const obj = { stock: payload };
-// 			var info = await axios.put(`http://localhost:3001/ventas/${id}`, obj);
-
-// 			return dispatch({
-// 				type: ADD_VENTA,
-// 				payload: info.data
-// 			});
-// 		};
-// 	} catch (error) {}
-// }
 
 export function addVenta(payload) {
 	try {
@@ -278,13 +275,12 @@ export function addVenta(payload) {
 }
 
 //Modifica stock de productos
-export function addStockProducto(id, payload) {
+export function addStockProducto(payload) {
 	try {
 		return async function (dispatch) {
-			const obj = { stock: payload };
 			var info = await axios.put(
-				`http://localhost:3001/productos/add/${id}`,
-				obj
+				`http://localhost:3001/productos/add/`,
+				payload
 			);
 			return dispatch({
 				type: ADD_STOCK_PRODUCTOS,
@@ -294,11 +290,10 @@ export function addStockProducto(id, payload) {
 	} catch (error) {}
 }
 
-export function addProduccion(id, payload) {
+export function addProduccion(payload) {
 	try {
 		return async function (dispatch) {
-			const obj = { stock: payload };
-			var info = await axios.put(`http://localhost:3001/produccion/${id}`, obj);
+			var info = await axios.put(`http://localhost:3001/produccion`, payload);
 			return dispatch({
 				type: ADD_PRODUCCION,
 				payload: info.data
