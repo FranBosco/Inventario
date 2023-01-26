@@ -153,8 +153,10 @@ export default function AgregVenta() {
 	const prods = useSelector((state) => state.allProductos);
 	const dispatch = useDispatch();
 
-	const [input, setInput] = useState(0);
-	const [id, setId] = useState('');
+	// const [input, setInput] = useState(0);
+	// const [id, setId] = useState('');
+
+	const [venta, setVenta] = useState([]);
 
 	const [property, setProperty] = useState('name');
 	const [order, setOrder] = useState('ASC');
@@ -168,13 +170,11 @@ export default function AgregVenta() {
 		e.preventDefault();
 		setProperty('name');
 		setOrder('ASC');
-		console.log(e.target.name, 'value');
 	};
 	const handleOrderNameDESC = (e) => {
 		e.preventDefault();
 		setProperty('name');
 		setOrder('DESC');
-		console.log(e.target.name, 'value');
 	};
 
 	const handleOrderStockASC = (e) => {
@@ -201,16 +201,23 @@ export default function AgregVenta() {
 	};
 
 	const handleChange = (e) => {
-		setInput(e.target.value);
-		setId(e.target.name);
+		// setInput(e.target.value);
+		// setId(e.target.name);
+		setVenta((prevState) => {
+			const newState = [...prevState];
+			newState[e.target.name] = { id: e.target.name, stock: e.target.value };
+			console.log(newState, 'state');
+			return newState;
+		});
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(addVenta(id, input));
+		dispatch(addVenta(venta));
 		alert('stock modificado');
 		dispatch(getProductos(property, order));
 		window.location.reload();
+		console.log(venta, 'veeenta');
 	};
 
 	useEffect(() => {
@@ -297,7 +304,9 @@ export default function AgregVenta() {
 					{prods?.map((p) => {
 						return (
 							<tr className="text-black border-2 border-black " key={p.id}>
-								<td className="px-2 border-2 border-black">{p.name}</td>
+								<td className="px-2 border-2 border-black">
+									{p.name} - {p.id}
+								</td>
 								<td className="px-2 border-2 border-black">{p.stock}</td>
 								<td className="px-2 border-2 border-black">{p.min}</td>
 								{p.difference > 0 ? (

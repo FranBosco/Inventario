@@ -250,11 +250,25 @@ export const modifyProd = (
 };
 
 //Agregar venta (resta del stock la cantidad vendida)
-export function addVenta(id, payload) {
+// export function addVenta(id, payload) {
+// 	try {
+// 		return async function (dispatch) {
+// 			const obj = { stock: payload };
+// 			var info = await axios.put(`http://localhost:3001/ventas/${id}`, obj);
+
+// 			return dispatch({
+// 				type: ADD_VENTA,
+// 				payload: info.data
+// 			});
+// 		};
+// 	} catch (error) {}
+// }
+
+export function addVenta(payload) {
 	try {
 		return async function (dispatch) {
-			const obj = { stock: payload };
-			var info = await axios.put(`http://localhost:3001/ventas/${id}`, obj);
+			var info = await axios.put(`http://localhost:3001/ventas`, payload);
+
 			return dispatch({
 				type: ADD_VENTA,
 				payload: info.data
