@@ -137,19 +137,6 @@ export function addStockInsumo(payload) {
 	} catch (error) {}
 }
 
-/* export function addStockProducto(payload) {
-	try {
-		return async function (dispatch) {
-			var info = await axios.put(
-				`http://localhost:3001/productos/add/`, payload);
-			return dispatch({
-				type: ADD_STOCK_PRODUCTOS,
-				payload: info.data
-			});
-		};
-	} catch (error) {}
-}  */
-
 //Traer todos los inmsumos
 export function getProductos(property, order) {
 	try {
@@ -289,6 +276,8 @@ export function addStockProducto(payload) {
 		};
 	} catch (error) {}
 }
+
+//Agrega produccion, sumando al stock el producto fabricado y restando los insumos utilizados
 
 export function addProduccion(payload) {
 	try {
