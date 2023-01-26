@@ -116,15 +116,19 @@ router.get("/:id", async (req, res) => {
 
 //----------------------------------------------------------------------------------------//
 //PUT /productos (para sumar stock) ---------------> reemplazar por /add
-router.put("/add/:id", async (req, res) => {
+router.put("/add", async (req, res) => {
   try {
-    let { id } = req.params;
     let edit = req.body;
-    let prod = await Productos.findByPk(id);
 
-    await prod.update({
-      ...prod,
-      stock: Number(prod.stock) + Number(edit.stock),
+    edit.map(async (element) => {
+      if (element !== null) {
+        let prod = await Productos.findByPk(element.id);
+
+        await prod.update({
+          ...prod,
+          stock: Number(prod.stock) + Number(element.stock),
+        });
+      }
     });
 
     return res.status(200).send("Stock agregado con exito");
