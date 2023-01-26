@@ -9,6 +9,7 @@ import Menu from './Menu';
 export default function CrearProd() {
 	const dispatch = useDispatch();
 	const allInsumos = useSelector((state) => state.allInsumos);
+	console.log(allInsumos, 'alli');
 
 	const [input, setInput] = useState({
 		name: '',
@@ -20,13 +21,12 @@ export default function CrearProd() {
 		defaultInput: [],
 		aux: {}
 	});
-	const [image, setImage] = useState("")
-	const [link, setLink] = useState("")
+	const [image, setImage] = useState('');
+	const [link, setLink] = useState('');
 
-    const [loading, setLoading] = React.useState(1)
+	const [loading, setLoading] = React.useState(1);
 
-    const [errors, setErrors] = React.useState({})
-
+	const [errors, setErrors] = React.useState({});
 
 	const [valueIns, setValueIns] = useState('');
 	const [valueCant, setValueCant] = useState('');
@@ -96,63 +96,61 @@ export default function CrearProd() {
 	//---------
 
 	const handleimg = async (e) => {
-        const files = e.target.files;
-        const data = new FormData();
-        let size = 0; //toma valor numerico del archivo.
-        if (files) {
-            size += files[0].size;
-        }
+		const files = e.target.files;
+		const data = new FormData();
+		let size = 0; //toma valor numerico del archivo.
+		if (files) {
+			size += files[0].size;
+		}
 
-        data.append('file', files[0]);
-        data.append('upload_preset', 'gestorDeInventario');
-        
-        try {
-            const res = await fetch(
-                'https://api.cloudinary.com/v1_1/dwblsrtdb/image/upload',
-                {
-                    method: 'POST',
-                    body: data
-                }
-            );
-            const file = await res.json();
-            let array = file.secure_url.split('.');
-            let format = array[array.length - 1];
+		data.append('file', files[0]);
+		data.append('upload_preset', 'gestorDeInventario');
 
-            if (size > 2000000) {
-                setErrors({
-                    ...errors,
-                    img: 'El archivo es demasiado grande'
-                });
-            } else {
-                if (format === 'jpg' || format === 'png') {
-                    setErrors({
-                        ...errors,
-                        img: ""
-                    });
-                    setImage(file.secure_url);
-                    setLoading(0);
-                    setInput({
+		try {
+			const res = await fetch(
+				'https://api.cloudinary.com/v1_1/dwblsrtdb/image/upload',
+				{
+					method: 'POST',
+					body: data
+				}
+			);
+			const file = await res.json();
+			let array = file.secure_url.split('.');
+			let format = array[array.length - 1];
+
+			if (size > 2000000) {
+				setErrors({
+					...errors,
+					img: 'El archivo es demasiado grande'
+				});
+			} else {
+				if (format === 'jpg' || format === 'png') {
+					setErrors({
+						...errors,
+						img: ''
+					});
+					setImage(file.secure_url);
+					setLoading(0);
+					setInput({
 						...input,
-						img: file.secure_url,
-					})
-                } else {
-                    setErrors({
-                        ...errors,
-                        img: 'Solo se admiten archivos formato jpeg o png'
-                    });
-                    setLoading(1);
-                }
-            }
-        } catch (error) {
-            setErrors({
-                ...errors,
-                img: 'Solo se admiten archivos formato jpeg o png'
-            });
-            setLoading(1);
-        }
-    };
-
-
+						img: file.secure_url
+					});
+				} else {
+					setErrors({
+						...errors,
+						img: 'Solo se admiten archivos formato jpeg o png'
+					});
+					setLoading(1);
+				}
+			}
+		} catch (error) {
+			setErrors({
+				...errors,
+				img: 'Solo se admiten archivos formato jpeg o png'
+			});
+			setLoading(1);
+		}
+	};
 
 	//-----------------------------------------------------------------------------------------------------------------
 
@@ -246,54 +244,81 @@ export default function CrearProd() {
 								</option>
 							))}
 						</select>
-						<div className="flex flex-col sm:flex-row">
+
+						<div className="flex flex-row sm:flex-row py-2	">
 							<span value={valueCant}>
-								<div className="flex flex-col sm:pt-4 rounded-xl">
+								<div className="flex sm:pt-4 rounded-xl">
 									<input
 										onChange={(e) => handleChangeCant(e)}
 										type="number"
 										placeholder="seleccione cantidad"
 										value={valueCant}
 									/>
-									<button onClick={(e) => handleSubCant(e)}>Cargar</button>
+									<div className="py-2 pl-4">
+										<button
+											onClick={(e) => handleSubCant(e)}
+											className="border-2 border-blue-800 rounded-xl px-1 "
+										>
+											Cargar insumo
+										</button>
+									</div>
 								</div>
 							</span>
 						</div>
 						{input.defaultInput.map((e) => {
 							return (
-								<div>
-									<h1>{e.insumos}</h1>
-									<h2>{e.cantidad}</h2>
+								<div className="flex flex-col sm:flex-row mb-4">
+									<h1 className="text-xl font-thin">{e.insumos} - </h1>
+									<h2 className="sm:pl-2 text-xl font-thin">
+										Cantidad: {e.cantidad}
+									</h2>
 								</div>
 							);
 						})}
 					</div>
 
 					<div>
-			<input
-                    id="inputFile"
-                    type="file"
-                    name="image"
-                    onChange={(e) => handleimg(e)}
-                />
-				{/* {loading === 2 ? (
+						<label className="flex flex-col sm:text-xl sm:font-bold pb-2">
+							{' '}
+							Imagen del producto:
+						</label>
+						<input
+							id="inputFile"
+							type="file"
+							name="image"
+							onChange={(e) => handleimg(e)}
+						/>
+						{/* {loading === 2 ? (
                     <p>
                         Cargando imagen...
                     </p>
                 ) : (
                     false */}
-                {/* )} */}
-                {loading === 0 ? (
-                    <div>
-                        <br />
-                        <img src={image} alt="" />
-                        <br />
-                    </div>
-                ) : (
-                    false
-                )}
-                {errors.img ? errors.img : false}<br /><button onClick={e => handleSubmit(e)}>Guardar cambios</button>
-				</div> 
+						{/* )} */}
+						{loading === 0 ? (
+							<div>
+								<br />
+								<img
+									src={image}
+									alt=""
+									className="border-2 border-blue-800 rounded-xl w-32 h-32 sm:w-64 sm:h-56"
+								/>
+								<br />
+							</div>
+						) : (
+							false
+						)}
+						{errors.img ? errors.img : false}
+						<br />
+						<div className="pt-2 pb-8">
+							<button
+								onClick={(e) => handleSubmit(e)}
+								className=" border-2 border-blue-800 py-2 px-4 rounded-xl hover:bg-blue-800 hover:text-white font-bold"
+							>
+								Guardar cambios
+							</button>
+						</div>
+					</div>
 
 					{/* <div className="pt-8 flex justify-center">
 						<button

@@ -21,15 +21,13 @@ export default function AgregProduccion() {
 	// 	id: '',
 	// 	input: 0
 	// })
-	
-	
 
 	const [property, setProperty] = useState('name');
 	const [order, setOrder] = useState('ASC');
 	function handleRefresh() {
 		setProperty('name');
 		setOrder('ASC');
-		
+
 		dispatch(getProductos(input.property, input.order));
 	}
 
@@ -81,11 +79,6 @@ export default function AgregProduccion() {
 		dispatch(getProductos(property, order));
 		window.location.reload();
 	};
-	//-----------------------------------------------------------------
-	//cloudinary
-
-	
-
 
 	useEffect(() => {
 		dispatch(getProductos(property, order));
@@ -199,9 +192,6 @@ export default function AgregProduccion() {
 				</tbody>
 			</table>
 			<div className="flex justify-center pt-4">
-			
-			
-				
 				<button
 					onClick={handleSubmit}
 					className="text-black font-mono border-2 rounded-xl border-blue-800 py-2 px-4 hover:bg-blue-800 hover:text-white"
