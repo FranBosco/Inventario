@@ -27,13 +27,11 @@ export default function AgregProduccion() {
 		e.preventDefault();
 		setProperty('name');
 		setOrder('ASC');
-		console.log(e.target.name, 'value');
 	};
 	const handleOrderNameDESC = (e) => {
 		e.preventDefault();
 		setProperty('name');
 		setOrder('DESC');
-		console.log(e.target.name, 'value');
 	};
 
 	const handleOrderStockASC = (e) => {
@@ -65,7 +63,7 @@ export default function AgregProduccion() {
 		setProduccion((prevState) => {
 			const newState = [...prevState];
 			newState[e.target.name] = { id: e.target.name, stock: e.target.value };
-			console.log(newState, 'state');
+
 			return newState;
 		});
 	};

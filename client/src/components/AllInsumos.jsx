@@ -9,7 +9,7 @@ import AllInsumosTable from './AllInsumosTable';
 
 export default function AllInsumos() {
 	return (
-		<div className="flex flex-col justify-center">
+		<div className="flex flex-col justify-center pb-8">
 			<div className="sm:flex">
 				<Link
 					to="/home"

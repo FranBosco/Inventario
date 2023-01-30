@@ -25,13 +25,11 @@ export default function AllInsTable() {
 		e.preventDefault();
 		setProperty('name');
 		setOrder('ASC');
-		console.log(e.target.name, 'value');
 	};
 	const handleOrderNameDESC = (e) => {
 		e.preventDefault();
 		setProperty('name');
 		setOrder('DESC');
-		console.log(e.target.name, 'value');
 	};
 
 	const handleOrderStockASC = (e) => {
@@ -63,7 +61,6 @@ export default function AllInsTable() {
 		setData((prevState) => {
 			const newState = [...prevState];
 			newState[e.target.name] = { id: e.target.name, stock: e.target.value };
-			console.log(newState, 'state');
 			return newState;
 		});
 	};
@@ -94,7 +91,7 @@ export default function AllInsTable() {
 				<thead>
 					<tr className="text-black border-2 border-black sm:text-xl">
 						<th className="px-2 py-2 border-4 border-black sm:px-12  ">
-							Insumos
+							Productos
 							<div className="flex space-x-4 justify-center ">
 								<button onClick={(e) => handleOrderNameDESC(e)}>
 									<FaArrowDown />
@@ -167,8 +164,11 @@ export default function AllInsTable() {
 					})}
 				</tbody>
 			</table>
-			<div className="flex justify-center">
-				<button onClick={handleSubmit} className="border-2">
+			<div className="flex justify-center pt-4">
+				<button
+					onClick={handleSubmit}
+					className="text-black font-mono border-2 rounded-xl border-blue-800 py-2 px-4 hover:bg-blue-800 hover:text-white"
+				>
 					Guardar
 				</button>
 			</div>

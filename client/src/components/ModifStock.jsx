@@ -75,7 +75,7 @@ export default function ModifStock() {
 			</div>
 
 			<div className={NextStateI}>
-				<div className="flex sm:justify-center pt-8">
+				<div className="flex sm:justify-center pt-8 pb-10">
 					<InsTableModif />
 				</div>
 			</div>
