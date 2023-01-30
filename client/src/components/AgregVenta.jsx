@@ -158,9 +158,7 @@ export default function AgregVenta() {
 					{prods?.map((p) => {
 						return (
 							<tr className="text-black border-2 border-black " key={p.id}>
-								<td className="px-2 border-2 border-black">
-									{p.name} - {p.id}
-								</td>
+								<td className="px-2 border-2 border-black">{p.name}</td>
 								<td className="px-2 border-2 border-black">{p.stock}</td>
 								<td className="px-2 border-2 border-black">{p.min}</td>
 								{p.difference > 0 ? (

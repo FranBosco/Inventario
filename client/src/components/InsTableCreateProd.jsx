@@ -15,13 +15,11 @@ export default function AllProdsTable() {
 		e.preventDefault();
 		setProperty('name');
 		setOrder('ASC');
-		console.log(e.target.name, 'value');
 	};
 	const handleOrderNameDESC = (e) => {
 		e.preventDefault();
 		setProperty('name');
 		setOrder('DESC');
-		console.log(e.target.name, 'value');
 	};
 
 	useEffect(() => {

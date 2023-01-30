@@ -5,7 +5,7 @@ import AllProdsTable from './AllProdsTable';
 
 export default function Allproductos() {
 	return (
-		<div className="flex flex-col justify-center">
+		<div className="flex flex-col justify-center pb-8">
 			<div className="sm:flex">
 				<Link
 					to="/home"

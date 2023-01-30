@@ -12,9 +12,6 @@ export default function ProdById() {
 	}, [dispatch, id]);
 	const prod = useSelector((state) => state.prodById);
 
-	console.log('prods', prod);
-	console.log('insumos', prod.insumos);
-
 	return (
 		<div className="flex flex-col  sm:pl-10 justify-center">
 			<Link to="/home" className="flex justify-start pt-2 pl-2">
